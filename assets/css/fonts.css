@@ -41,3 +41,9 @@
     font-family: "Barlow-Regular";
     src: url("fonts/Barlow-Regular.ttf") format('truetype');
 }
+
+/*****DIGITAL******/
+@font-face {
+    font-family: "DS-DIGIB";
+    src: url("fonts/DS-DIGIB.ttf") format('truetype');
+}

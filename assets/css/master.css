@@ -117,8 +117,8 @@ header{
 #personaje-home{
     position: absolute;
     display: block;
-    width: 127px;
-    height: 368px;
+    width: 132px;
+    height: 370px;
     background-image: url(../images/personaje.png);
     background-size: contain;
     background-position: center;
@@ -149,75 +149,424 @@ header{
 
 #elementos{
     position: absolute;
+    box-sizing: border-box;
     width: 768px;
     height: 472px;
     top: 5%;
     left: 0px;
     border: #FF0000 solid 1px;
 }
-#casilleros">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-            <div id="personaje">
-                <div id="personaje-main"></div>
-                <div id="personaje-areas">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
+#casilleros{
+    position: absolute;
+    box-sizing: border-box;
+    width: 768px;
+    height: 472px;
+    top: 5%;
+    left: 0px;
+    border: #FF0000 solid 1px;
+}
+#casilleros > div{
+    position: absolute;
+    width: 88px;
+    height: 95px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(../images/locker-door.svg);
 
-            <div id="menu">
-                <div class="menu-left">
-                    <button id="comprobar-btn">Comprobar</button>
-                    <button id="music-btn"></button>
-                    <button id="ayuda-btn"></button>
-                </div>
-                <div class="menu-right">
-                    <div id="reloj">
-                        <p id="tiempo-txt">00:00</p>
-                    </div>
-                </div>
+    transform-origin: 0% center;
+    -webkit-transform-origin: 0% center;
+    -o-transform-origin: 0% center;
+}
+#casilleros div:nth-child(1){top:5px;left:11px;}
+#casilleros div:nth-child(2){top:5px;left:105px;width:91px;}
+#casilleros div:nth-child(3){top:103px;left:11px;}
+#casilleros div:nth-child(4){top:103px;left:105px;width:91px;}
+#casilleros div:nth-child(5){top:201px;left:11px;}
+#casilleros div:nth-child(6){top:201px;left:105px;width:91px;}
+#casilleros div:nth-child(7){top:301px;left:11px;}
+#casilleros div:nth-child(8){top:301px;left:105px;width:91px;}
+#casilleros div:nth-child(9){top:5px;left:471px;width:92px;}
+#casilleros div:nth-child(10){top:5px;left:568px;}
+#casilleros div:nth-child(11){top:5px;left:662px;}
+#casilleros div:nth-child(12){top:103px;left:471px;width:92px;}
+#casilleros div:nth-child(13){top:103px;left:568px;}
+#casilleros div:nth-child(14){top:103px;left:662px;}
+#casilleros div:nth-child(15){top:201px;left:471px;width:92px;}
+#casilleros div:nth-child(16){top:201px;left:568px;}
+#casilleros div:nth-child(17){top:201px;left:662px;}
+#casilleros div:nth-child(18){top:301px;left:471px;width:92px;}
+#casilleros div:nth-child(19){top:301px;left:568px;}
+#casilleros div:nth-child(20){top:301px;left:662px;}
+
+
+#personaje{
+    position: absolute;
+    display: block;
+    width: 132px;
+    height: 370px;
+    
+    top: 9%;
+    left: 36%;
+}
+#personaje-main{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+
+    background-image: url(../images/personaje.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#personaje-areas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+#personaje-areas > div{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #FFFFFF;
+    opacity: 0.4;
+}
+
+#personaje-areas div:nth-child(1){top:0px;left:0px;}
+#personaje-areas div:nth-child(2){top:0px;left:0px;}
+#personaje-areas div:nth-child(3){top:0px;left:0px;}
+#personaje-areas div:nth-child(4){top:0px;left:0px;}
+#personaje-areas div:nth-child(5){top:0px;left:0px;}
+#personaje-areas div:nth-child(6){top:0px;left:0px;}
                 
-            </div>
-        </div>
-    </div>
+#menu{
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    bottom: 0px;
+    left: 0px;
+}
 
-    <div id="modal">
-        <h2 id="modal-title"></h2>
-        <div id="modal-content">
-            <div class="modal-instrucciones-gif"></div>
-            <p>Juan necesita tu ayuda para realizar un trabajo de: <br /><span>Alcantarilla</span></p>
-            <p>Para ayudarlo busca en los casilleros el equipo de protección personal correcto, teniendo en cuenta el tipo de trabajo que le sea asignado.</p>
-            <p>Arrastra los elementos hasta la zona del cuerpo donde correspondan, una luz amarilla te guiará.</p>
-            <p>Luego haz clic en el botón comprobar para verificar si Juan esta vestido correctamente para realizar la actividad.</p>
-        </div>
-        <button id="modal-button">jugar</button>
-    </div>
+.menu-left{
+    display: flex;
+    flex-direction: row;
+}
+#comprobar-btn{
+    display: block;
+    width: 136px;
+    height: 41px;
+    border-radius: 4px;
+    background: #E3E829;
+    background: linear-gradient(to bottom, #E3E829, #C6C62A);
+    background: -webkit-linear-gradient(to bottom, #E3E829, #C6C62A);
+    background: -o-linear-gradient(to bottom, #E3E829, #C6C62A);
+    cursor: pointer;
 
-    <div id="tooltip">
-        <p><span>¡Viste a Juan para un trabajo de Alcantarilla!</span><br />Haz clic en las puertas de los casilleros y arrastra  la prenda hacia Juan.</p>
-    </div>
-</div>
+    margin: 0px;
+    margin-left: 20px;
+    padding: 0px;
+    border: none;
+
+    font-family: 'Barlow-Bold';
+    font-size: 18px;
+    color: #0033A0;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+    text-transform: uppercase;
+}
+#comprobar-btn:hover,
+#music-btn:hover,
+#ayuda-btn:hover
+{
+    box-shadow: -1px 1px 2px 1px rgba(0,0,0,0.5);
+}
+
+#music-btn,
+#ayuda-btn{
+    display: block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background-color: #00AEC7;
+
+    padding: 0px;
+    margin: 2.5px 0px;
+    margin-left: 20px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 22px 22px;
+    cursor: pointer;
+}
+
+#ayuda-btn{
+    background-image: url(../images/help-icon.svg);
+}
+.music-on{
+    background-image: url(../images/music-on-icon.svg);
+}
+.music-off{
+    background-image: url(../images/music-off-icon.svg);
+}
+
+.menu-right{
+    display: flex;
+}
+#reloj{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 104px;
+    height: 41px;
+    box-sizing: border-box;
+    margin-right: 20px;
+
+    border-radius: 10px;
+    border: #00AEC7 solid 5px;
+    background-color: #000000;
+}
+#reloj::after{
+    position: absolute;
+    content: "";
+    width: 55%;
+    height: 6px;
+    background-color: #000000;
+    left: 22.5%;
+    top: 100%;
+    top: calc(100% + 5px);
+    top: -moz-calc(100% + 5px);
+    border-radius: 0px 0px 5px 5px;
+}
+
+#tiempo-txt{
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    font-family: 'DS-DIGIB';
+    font-size: 35px;
+    color: #00AEC7;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+}
+
+#modal{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    top: 0px;
+    left: 0px;
+    
+    align-items: center;
+    justify-content: center;
+}
+.modal-off{
+    display: none;
+}
+.modal-on{
+    display: flex;
+}
+
+#modal-box{
+    width: 360px;
+    position: relative;
+    display: block;
+    margin: 0px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.2);
+}
+
+#modal-title{
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    margin-bottom: 10px;
+
+    font-family: 'FSJoey-Bold';
+    font-size: 19px;
+    color: #0033A0;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+}
+#modal-close-btn{
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 50%;
+    position: absolute;
+
+    background-color: #00AEC7;
+    border: none;
+    right: 10px;
+    top: 10px;
+    width: 25px;
+    height: 25px;
+}
+#modal-close-btn::after,
+#modal-close-btn::before
+{
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background-color: #FFFFFF;
+    transform-origin: center center;
+    -webkit-transform-origin: center center;
+    -o-transform-origin: center center;
+    top: 50%;
+    top: calc(50% - 1px);
+    top: -moz-calc(50% - 1px);
+    left: 50%;
+    left: calc(50% - 7.5px);
+    left: -moz-calc(50% - 7.5px);
+}
+#modal-close-btn::after{
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+#modal-close-btn::before{
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+}
+
+#modal-content{
+    position: relative;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 20px;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.modal-instrucciones-gif{
+    position: relative;
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    margin: 0px;
+    margin-bottom: 10px;
+    padding: 0px;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: #F9F9F9;
+    overflow: hidden;
+    background-image: url(../images/instrucciones.gif);
+}
+
+#modal-content p{
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    font-family: 'Barlow-Medium';
+    font-size: 13px;
+    color: #53565A;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+    margin-bottom: 10px;
+}
+#modal-button{
+    position: absolute;
+    display: block;
+    width: 116px;
+    height: 41px;
+    border-radius: 4px;
+    background-color: #00AEC7;
+    border: none;
+
+    font-family: 'Barlow-Bold';
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+    bottom: -20px;
+    left: 50%;
+    left: calc(50% - 58px);
+    left: -moz-calc(50% - 58px);
+
+    box-shadow: 0px 4px 3px 2px rgba(0,0,0,0.2);
+}
+#modal-button:hover{
+    background-color: #0097A3;
+    cursor: pointer;
+}
+#tooltip{
+    position: absolute;
+    width: 400px;
+    border-radius: 0px 0px 0px 15px;
+    background-color: #56AAC6;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 10px;
+
+    top: 20%;
+    right: 0px;
+}
+#tooltip::after{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    top: 50%;
+    top: calc(50% - 6px);
+    top: -moz-calc(50% - 6px);
+    left: 100%;
+
+    border-top: 6px solid rgba(0,0,0,0);
+    border-top: 6px solid rgba(0,0,0,0);
+    border-left: 7px solid #56AAC6;
+}
+.tooltip-off{
+    display: none;
+}
+.tooltip-on{
+    display: block;
+}
+
+#tooltip p{
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    font-family: 'Barlow-Medium';
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: left;
+    font-weight: normal;
+    line-height: normal;
+}
+#tooltip p span{
+    font-family: 'Barlow-Bold';
+}

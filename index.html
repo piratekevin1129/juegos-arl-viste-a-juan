@@ -33,7 +33,7 @@
         </header>
 
         <div id="game">
-            <div id="home-scene">
+            <div id="home-scene" style="display: none;">
                 <div class="fondo"></div>
                 <div id="personaje-home"></div>
             </div>
@@ -78,7 +78,7 @@
                 <div id="menu">
                     <div class="menu-left">
                         <button id="comprobar-btn">Comprobar</button>
-                        <button id="music-btn"></button>
+                        <button id="music-btn" class="music-on"></button>
                         <button id="ayuda-btn"></button>
                     </div>
                     <div class="menu-right">
@@ -91,19 +91,22 @@
             </div>
         </div>
 
-        <div id="modal">
-            <h2 id="modal-title"></h2>
-            <div id="modal-content">
-                <div class="modal-instrucciones-gif"></div>
-                <p>Juan necesita tu ayuda para realizar un trabajo de: <br /><span>Alcantarilla</span></p>
-                <p>Para ayudarlo busca en los casilleros el equipo de protección personal correcto, teniendo en cuenta el tipo de trabajo que le sea asignado.</p>
-                <p>Arrastra los elementos hasta la zona del cuerpo donde correspondan, una luz amarilla te guiará.</p>
-                <p>Luego haz clic en el botón comprobar para verificar si Juan esta vestido correctamente para realizar la actividad.</p>
+        <div id="modal" class="modal-off">
+            <div id="modal-box">
+                <button id="modal-close-btn"></button>
+                <h2 id="modal-title">Instrucciones</h2>
+                <div id="modal-content">
+                    <div class="modal-instrucciones-gif"></div>
+                    <p>Juan necesita tu ayuda para realizar un trabajo de: <br /><span>Alcantarilla</span></p>
+                    <p>Para ayudarlo busca en los casilleros el equipo de protección personal correcto, teniendo en cuenta el tipo de trabajo que le sea asignado.</p>
+                    <p>Arrastra los elementos hasta la zona del cuerpo donde correspondan, una luz amarilla te guiará.</p>
+                    <p>Luego haz clic en el botón comprobar para verificar si Juan esta vestido correctamente para realizar la actividad.</p>
+                </div>
+                <button id="modal-button">jugar</button>
             </div>
-            <button id="modal-button">jugar</button>
         </div>
 
-        <div id="tooltip">
+        <div id="tooltip" class="tooltip-off">
             <p><span>¡Viste a Juan para un trabajo de Alcantarilla!</span><br />Haz clic en las puertas de los casilleros y arrastra  la prenda hacia Juan.</p>
         </div>
     </div>
