@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    
+    <!--FONT AWASOME-->
+    <script src="https://kit.fontawesome.com/a6f44a68f2.js" crossorigin="anonymous"></script>
+
+    <!--Estilos propios-->
+    <link href="assets/css/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/master.css" rel="stylesheet" type="text/css" />
+    <title>Viste a Juan</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <div class="row row-header1">
+                <div class="logo-sura">
+                </div>
+                <div class="titulo">
+                    <h1><span>Módulos Interactivos:</span> Prevención de Riesgos</h1>
+                </div>
+            </div>
+            <div class="row row-header2">
+                <div class="logo-arl"></div>
+            </div>
+        </header>
+
+        <div id="game">
+            <div id="home-scene">
+                <div class="fondo"></div>
+                <div id="personaje-home"></div>
+            </div>
+            <div id="game-scene">
+                <div class="fondo"></div>
+                <div class="fondo-casilleros"></div>
+                <div id="elementos"></div>
+                <div id="casilleros">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div id="personaje">
+                    <div id="personaje-main"></div>
+                    <div id="personaje-areas">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+
+                <div id="menu">
+                    <div class="menu-left">
+                        <button id="comprobar-btn">Comprobar</button>
+                        <button id="music-btn"></button>
+                        <button id="ayuda-btn"></button>
+                    </div>
+                    <div class="menu-right">
+                        <div id="reloj">
+                            <p id="tiempo-txt">00:00</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div id="modal">
+            <h2 id="modal-title"></h2>
+            <div id="modal-content">
+                <div class="modal-instrucciones-gif"></div>
+                <p>Juan necesita tu ayuda para realizar un trabajo de: <br /><span>Alcantarilla</span></p>
+                <p>Para ayudarlo busca en los casilleros el equipo de protección personal correcto, teniendo en cuenta el tipo de trabajo que le sea asignado.</p>
+                <p>Arrastra los elementos hasta la zona del cuerpo donde correspondan, una luz amarilla te guiará.</p>
+                <p>Luego haz clic en el botón comprobar para verificar si Juan esta vestido correctamente para realizar la actividad.</p>
+            </div>
+            <button id="modal-button">jugar</button>
+        </div>
+
+        <div id="tooltip">
+            <p><span>¡Viste a Juan para un trabajo de Alcantarilla!</span><br />Haz clic en las puertas de los casilleros y arrastra  la prenda hacia Juan.</p>
+        </div>
+    </div>
+    <script src="assets/js/game.js"></script>
+</body>
+</html>

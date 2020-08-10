@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 88 95" style="enable-background:new 0 0 88 95;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:url(#SVGID_2_);}
+	.st2{fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<g>
+	<g transform="matrix( -1.1783599853515625, 0, 0, 1.1783905029296875, 1018.65,-58.35) ">
+		<g>
+			<g id="Layer0_0_MEMBER_17_FILL">
+				
+					<radialGradient id="SVGID_1_" cx="1298.9363" cy="229.0938" r="58.6838" gradientTransform="matrix(-1.1784 0 0 -1.2384 2363.877 366.9322)" gradientUnits="userSpaceOnUse">
+					<stop  offset="0.1686" style="stop-color:#E9F1F3"/>
+					<stop  offset="1" style="stop-color:#B9C5CC"/>
+				</radialGradient>
+				<path class="st0" d="M864.6,130.1V49.6h-75v80.5H864.6z"/>
+			</g>
+		</g>
+	</g>
+	<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+		<g transform="matrix( -1.198974609375, 0, 0, 0.8962554931640625, 231.8,130.5) ">
+			<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+				<g>
+					<g>
+						
+							<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="622.4304" y1="37.1562" x2="627.5726" y2="36.5077" gradientTransform="matrix(-1.199 0 0 -0.8963 926.4998 -58.2873)">
+							<stop  offset="0" style="stop-color:#5E5E5E"/>
+							<stop  offset="1" style="stop-color:#31312E"/>
+						</linearGradient>
+						<path class="st1" d="M186.9-77.8v-25.9c-1.5-1.5-2.7-1.5-3.5,0v25.9C184.6-77,185.7-77,186.9-77.8z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g transform="matrix( -1.1782989501953125, 0, 0, 1.1783294677734375, 1018.85,-58.35) ">
+		<g transform="matrix( -0.8486785888671875, 0, 0, 0.8486480712890625, 864.65,49.5) ">
+			<path id="Layer0_0_MEMBER_17_MEMBER_2_1_STROKES" class="st2" d="M807,75.2h42.6"/>
+		</g>
+		<g transform="matrix( -0.8486785888671875, 0, 0, 0.8486480712890625, 864.65,49.5) ">
+			<path id="Layer0_0_MEMBER_17_MEMBER_2_2_STROKES" class="st2" d="M806.4,64.3H849"/>
+		</g>
+		<g transform="matrix( -0.8486785888671875, 0, 0, 0.8486480712890625, 864.65,49.5) ">
+			<path id="Layer0_0_MEMBER_17_MEMBER_2_3_STROKES" class="st2" d="M806.6,69.9h42.6"/>
+		</g>
+	</g>
+</g>
+</svg>
