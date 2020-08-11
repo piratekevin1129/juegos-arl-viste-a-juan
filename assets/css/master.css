@@ -39,7 +39,7 @@ header{
 
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url(../images/logo_sura.svg);
+    background-image: url(../images/logo-sura.svg);
 }
 .titulo{
     position: relative;
@@ -80,7 +80,7 @@ header{
 
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url(../images/logo_arl.svg);
+    background-image: url(../images/logo-arl.svg);
 }
 
 #game{
@@ -165,10 +165,24 @@ header{
     left: 0px;
     border: #FF0000 solid 1px;
 }
-#casilleros > div{
+.locker{
     position: absolute;
     width: 88px;
     height: 95px;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+}
+.locker-active{
+    z-index: 100;
+    transition: z-index 0s;
+    -webkit-transition: z-index 0s;
+}
+.locker-inactive{
+    z-index: initial;
+    transition: z-index 0.2s;
+    transition-delay: 0.2s;
+    -webkit-transition: z-index 0.2s;
+    -webkit-transition-delay: 0.2s;
 }
 #casilleros .locker:nth-child(1){top:5px;left:11px;}
 #casilleros .locker:nth-child(2){top:5px;left:105px;width:91px;}
@@ -201,26 +215,84 @@ header{
     background-repeat: no-repeat;
     background-size: 100%;
     background-image: url(../images/locker-door.svg);
+    cursor: pointer;
 
-    transform-origin: 0% center;
-    -webkit-transform-origin: 0% center;
-    -o-transform-origin: 0% center;
+    transform-origin: 100% center;
+    -webkit-transform-origin: 100% center;
+    -o-transform-origin: 100% center;
+
+    transition: transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
+    -webkit-transition: transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
 }
+.locked-door-close{
+    animation-name: abrir-puerta;
+    animation-duration: 0.2s;
+    animation-direction: reverse;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    -webkit-animation-name: abrir-puerta;
+    -webkit-animation-duration: 0.2s;
+    -webkit-animation-direction: reverse;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+}
+.locked-door-open{
+    animation-name: abrir-puerta;
+    animation-duration: 0.4s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    -webkit-animation-name: abrir-puerta;
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: linear;
+
+    transform: rotateY(110deg);
+    -webkit-transform: rotateY(110deg);
+    -o-transform: rotateY(110deg);
+}
+@keyframes abrir-puerta {
+    0%{
+        transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+    90%{
+        transform: rotateY(117deg);
+        -webkit-transform: rotateY(117deg);
+        -o-transform: rotateY(117deg);
+    }
+    100%{
+        transform: rotateY(110deg);
+        -webkit-transform: rotateY(110deg);
+        -o-transform: rotateY(110deg);
+    }
+}
+
+
 .elemento{
     position: absolute;
     width: 100%;
     height: 100%;
-    height: calc(100% - 15px);
-    height: -moz-calc(100% - 15px);
     top: 0px;
     left: 0px;
     margin: 0px;
     padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.elemento div{
+    position: relative;
     display: block;
-
-    background-position: center 100%;
-    background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+    border: #000 solid 1px;
+    cursor: grab;
 }
 
 #personaje{
