@@ -147,7 +147,7 @@ header{
     left: 0px;
 }
 
-#elementos{
+/*#elementos{
     position: absolute;
     box-sizing: border-box;
     width: 768px;
@@ -155,7 +155,7 @@ header{
     top: 5%;
     left: 0px;
     border: #FF0000 solid 1px;
-}
+}*/
 #casilleros{
     position: absolute;
     box-sizing: border-box;
@@ -169,6 +169,34 @@ header{
     position: absolute;
     width: 88px;
     height: 95px;
+}
+#casilleros .locker:nth-child(1){top:5px;left:11px;}
+#casilleros .locker:nth-child(2){top:5px;left:105px;width:91px;}
+#casilleros .locker:nth-child(3){top:103px;left:11px;}
+#casilleros .locker:nth-child(4){top:103px;left:105px;width:91px;}
+#casilleros .locker:nth-child(5){top:201px;left:11px;}
+#casilleros .locker:nth-child(6){top:201px;left:105px;width:91px;}
+#casilleros .locker:nth-child(7){top:301px;left:11px;}
+#casilleros .locker:nth-child(8){top:301px;left:105px;width:91px;}
+#casilleros .locker:nth-child(9){top:5px;left:471px;width:92px;}
+#casilleros .locker:nth-child(10){top:5px;left:568px;}
+#casilleros .locker:nth-child(11){top:5px;left:662px;}
+#casilleros .locker:nth-child(12){top:103px;left:471px;width:92px;}
+#casilleros .locker:nth-child(13){top:103px;left:568px;}
+#casilleros .locker:nth-child(14){top:103px;left:662px;}
+#casilleros .locker:nth-child(15){top:201px;left:471px;width:92px;}
+#casilleros .locker:nth-child(16){top:201px;left:568px;}
+#casilleros .locker:nth-child(17){top:201px;left:662px;}
+#casilleros .locker:nth-child(18){top:301px;left:471px;width:92px;}
+#casilleros .locker:nth-child(19){top:301px;left:568px;}
+#casilleros .locker:nth-child(20){top:301px;left:662px;}
+
+.locker-door{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -178,27 +206,22 @@ header{
     -webkit-transform-origin: 0% center;
     -o-transform-origin: 0% center;
 }
-#casilleros div:nth-child(1){top:5px;left:11px;}
-#casilleros div:nth-child(2){top:5px;left:105px;width:91px;}
-#casilleros div:nth-child(3){top:103px;left:11px;}
-#casilleros div:nth-child(4){top:103px;left:105px;width:91px;}
-#casilleros div:nth-child(5){top:201px;left:11px;}
-#casilleros div:nth-child(6){top:201px;left:105px;width:91px;}
-#casilleros div:nth-child(7){top:301px;left:11px;}
-#casilleros div:nth-child(8){top:301px;left:105px;width:91px;}
-#casilleros div:nth-child(9){top:5px;left:471px;width:92px;}
-#casilleros div:nth-child(10){top:5px;left:568px;}
-#casilleros div:nth-child(11){top:5px;left:662px;}
-#casilleros div:nth-child(12){top:103px;left:471px;width:92px;}
-#casilleros div:nth-child(13){top:103px;left:568px;}
-#casilleros div:nth-child(14){top:103px;left:662px;}
-#casilleros div:nth-child(15){top:201px;left:471px;width:92px;}
-#casilleros div:nth-child(16){top:201px;left:568px;}
-#casilleros div:nth-child(17){top:201px;left:662px;}
-#casilleros div:nth-child(18){top:301px;left:471px;width:92px;}
-#casilleros div:nth-child(19){top:301px;left:568px;}
-#casilleros div:nth-child(20){top:301px;left:662px;}
+.elemento{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    height: calc(100% - 15px);
+    height: -moz-calc(100% - 15px);
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    display: block;
 
+    background-position: center 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
 #personaje{
     position: absolute;
