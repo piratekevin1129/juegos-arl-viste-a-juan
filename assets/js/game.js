@@ -10,6 +10,9 @@ var jobs_completed = []
 var actual_job = -1
 var lista_elementos = []
 
+var game = getE('game')
+var game_rect = game.getBoundingClientRect()
+
 function getJob(){
 	var job = getRand(0,(oficios.length-1))
 	var job_exists = jobs_completed.includes(job)
@@ -84,6 +87,7 @@ function findElementIndex(id){
 
 function loadElementos(e){
 	if(e==lista_elementos.length){
+		prepareElementos()
 		putElementos()
 	}else{
 		loadElemento(e)
@@ -92,6 +96,7 @@ function loadElementos(e){
 
 function loadElemento(e){
 	var img = new Image()
+	var img2 = new Image()
 	img.onload = function(){
 		elementos[findElementIndex(lista_elementos[e])].width = this.width
 		elementos[findElementIndex(lista_elementos[e])].height = this.height
@@ -99,7 +104,24 @@ function loadElemento(e){
 		img.onload = null
 		img.onerror = null
 		img = null
-		loadElementos((e+1))
+
+		img2.onload = function(){
+			elementos[findElementIndex(lista_elementos[e])].width2 = this.width
+			elementos[findElementIndex(lista_elementos[e])].height2 = this.height
+			
+			img2.onload = null
+			img2.onerror = null
+			img2 = null
+			loadElementos((e+1))
+		}
+		img2.onerror = function(){
+			console.log("Error loading element 2 "+img2.scr)
+			img2.onload = null
+			img2.onerror = null
+			img2 = null
+			loadElementos((e+1))
+		}
+		img2.src = 'assets/images/elementos/'+lista_elementos[e]+'-p.png'
 	}
 	img.onerror = function(){
 		console.log("Error loading element "+img.src)
@@ -109,6 +131,25 @@ function loadElemento(e){
 		loadElementos((e+1))
 	}
 	img.src = 'assets/images/elementos/'+lista_elementos[e]+'.png'
+}
+
+function prepareElementos(){
+	for(i = 0;i<elementos.length;i++){
+		var ropa = document.createElement('div')
+		ropa.id = 'ropa'+elementos[i].id
+		ropa.className = 'ropa ropa-off'
+		ropa.style.transform = 'translateX(-'+(elementos[i].width2/2)+'px) translateY(-'+(elementos[i].height2/2)+'px)'
+		ropa.style.webkitTransform = 'translateX(-'+(elementos[i].width2/2)+'px) translateY(-'+(elementos[i].height2/2)+'px)'
+		ropa.style.oTransform = 'translateX(-'+(elementos[i].width2/2)+'px) translateY(-'+(elementos[i].height2/2)+'px)'
+
+		ropa.style.width = elementos[i].width2+'px'
+		ropa.style.height = elementos[i].height2+'px'
+		ropa.style.left = elementos[i].x+'%'
+		ropa.style.top = elementos[i].y+'%'
+		ropa.style.backgroundImage = 'url(assets/images/elementos/'+elementos[i].id+'-p.png)'
+
+		getE('personaje-ropas').appendChild(ropa)
+	}
 }
 
 function putElementos(){
@@ -122,10 +163,10 @@ function putElementos(){
 		div_elemento_img.style.width = elementos[indx].width+'px'
 		div_elemento_img.style.height = elementos[indx].height+'px'
 		div_elemento_img.style.backgroundImage = 'url(assets/images/elementos/'+lista_elementos[i]+'.png)'
+		div_elemento_img.setAttribute('onmousedown','downElemento(event,this,'+i+')')
 
 		div_elemento.appendChild(div_elemento_img)
 		
-
 		var div_puerta = document.createElement('div')
 		div_puerta.className = 'locker-door locked-door-close'
 		div_puerta.setAttribute("onclick","clickPuerta(this,"+(i+1)+")")
@@ -156,7 +197,6 @@ function clickPuerta(door,idlocker){
 			actual_casillero = getE('casillero'+idlocker)
 			actual_puerta.classList.remove('locked-door-close')
 			actual_puerta.classList.add('locked-door-open')
-			actual_casillero.style.zIndex = 100
 		}
 	}else{
 		//es primera vez, abramosla
@@ -164,8 +204,101 @@ function clickPuerta(door,idlocker){
 		actual_casillero = getE('casillero'+idlocker)
 		actual_puerta.classList.remove('locked-door-close')
 		actual_puerta.classList.add('locked-door-open')
-		actual_casillero.style.zIndex = 1
 	}
+}
+
+///////////FUNCIONES ELEMENTO////////////////
+var dragging = false
+var actual_elemento = null
+var actual_elemento_ind = -1
+var actual_img = null
+
+function downElemento(e,img,ind){
+	actual_img = img
+	actual_elemento_ind = ind
+	actual_elemento = elementos[findElementIndex(lista_elementos[ind])]
+	getE('elemento-drag').style.backgroundImage = 'url(assets/images/elementos/'+lista_elementos[ind]+'-p.png)'
+	getE('elemento-drag').style.width = actual_elemento.width2+'px'
+	getE('elemento-drag').style.height = actual_elemento.height2+'px'
+	getE('elemento-drag').classList.remove('elemento-drag-off')
+	getE('elemento-drag').classList.add('elemento-drag-on')
+	actual_img.classList.add('elemento-off')
+
+	//iluminar parte
+	showParts()
+
+	var posx = e.pageX-(actual_elemento.width2/2)
+	var posy = e.pageY-(actual_elemento.height2/2)
+
+	getE('elemento-drag').style.left = (posx)+'px'
+	getE('elemento-drag').style.top = (posy-game_rect.top)+'px'
+
+	document.addEventListener('mousemove',moveElemento,false)
+	document.addEventListener('mouseup',upElemento,false)
+	console.log(actual_elemento)
+}
+
+function showParts(){
+	for(i = 0;i<actual_elemento.parte.length;i++){
+		var parte = getE('area'+actual_elemento.parte[i])
+		parte.classList.remove('area-off')
+		parte.classList.add('area-on')
+	}
+}
+function hideParts(){
+	var areas = getE('personaje-areas').getElementsByClassName('area')
+	for(i = 0;i<areas.length;i++){
+		areas[i].className = 'area area-off'
+	}
+}
+
+function moveElemento(e){
+	var posx = e.pageX-(actual_elemento.width2/2)
+	var posy = e.pageY-(actual_elemento.height2/2)
+
+	getE('elemento-drag').style.left = (posx)+'px'
+	getE('elemento-drag').style.top = (posy-game_rect.top)+'px'
+}
+
+function upElemento(e){
+	var posx = e.pageX
+	var posy = e.pageY
+
+	getE('elemento-drag').classList.remove('elemento-drag-on')
+	getE('elemento-drag').classList.add('elemento-drag-off')
+
+	var areas = getE('personaje-areas').getElementsByClassName('area-on')
+	var area_tocada = null
+	for(i = 0;i<areas.length;i++){
+		var rect_area = areas[i].getBoundingClientRect()
+		console.log(posx,rect_area.left,areas[i].offsetWidth)
+		console.log(posy,rect_area.top,areas[i].offsetHeight)
+		if(
+			posx>rect_area.left&&
+			posx<(rect_area.left+areas[i].offsetWidth)&&
+			posy>rect_area.top&&
+			posy<(rect_area.top+areas[i].offsetHeight)
+		){
+			area_tocada = areas[i].id
+		}
+	}
+
+	if(area_tocada!=null){
+		var ropa_seleccionada = getE('ropa'+actual_elemento.id)
+		ropa_seleccionada.classList.remove('ropa-off')
+		ropa_seleccionada.classList.add('ropa-on')
+	}else{
+		//no tocó nada, devolvamos todo
+		actual_img.classList.remove('elemento-off')
+	}
+
+	actual_img = null
+	actual_elemento_ind = -1
+	actual_elemento = null
+	hideParts()
+
+	document.removeEventListener('mousemove',moveElemento,false)
+	document.removeEventListener('mouseup',upElemento,false)
 }
 
 function getE(idname){
