@@ -67,25 +67,26 @@
                     <div id="personaje-main"></div>
                     <div id="personaje-ropas"></div>
                     <div id="personaje-areas">
-                        <div class="area area-off" id="area1"></div>
-                        <div class="area area-off" id="area2"></div>
-                        <div class="area area-off" id="area3"></div>
-                        <div class="area area-off" id="area4"></div>
-                        <div class="area area-off" id="area5"></div>
-                        <div class="area area-off" id="area6"></div>
-                        <div class="area area-off" id="area7"></div>
-                        <div class="area area-off" id="area8"></div>
-                        <div class="area area-off" id="area9"></div>
-                        <div class="area area-off" id="area10"></div>
-                        <div class="area area-off" id="area11"></div>
-                        <div class="area area-off" id="area12"></div>
-                        <div class="area area-off" id="area13"></div>
+                        <div class="area area-off" occuped="no" id="area1"></div>
+                        <div class="area area-off" occuped="no" id="area2"></div>
+                        <div class="area area-off" occuped="no" id="area3"></div>
+                        <div class="area area-off" occuped="no" id="area4"></div>
+                        <div class="area area-off" occuped="no" id="area5"></div>
+                        <div class="area area-off" occuped="no" id="area6"></div>
+                        <div class="area area-off" occuped="no" id="area7"></div>
+                        <div class="area area-off" occuped="no" id="area8"></div>
+                        <div class="area area-off" occuped="no" id="area9"></div>
+                        <div class="area area-off" occuped="no" id="area10"></div>
+                        <div class="area area-off" occuped="no" id="area11"></div>
+                        <div class="area area-off" occuped="no" id="area12"></div>
+                        <div class="area area-off" occuped="no" id="area13"></div>
                     </div>
+                    
                 </div>
 
                 <div id="menu">
                     <div class="menu-left">
-                        <button id="comprobar-btn">Comprobar</button>
+                        <button id="comprobar-btn" onclick="comprarVestida()">Comprobar</button>
                         <button id="music-btn" class="music-on"></button>
                         <button id="ayuda-btn"></button>
                     </div>
@@ -100,9 +101,11 @@
             </div>
         </div>
 
+        <div id="tooltip" class="tooltip-off"></div>
+
         <div id="modal" class="modal-off">
             <div id="modal-box">
-                <button id="modal-close-btn"></button>
+                <button id="modal-close-btn" onclick="unsetModal()"></button>
                 <h2 id="modal-title">Instrucciones</h2>
                 <div id="modal-content">
                     <div class="modal-instrucciones-gif"></div>
@@ -115,11 +118,15 @@
             </div>
         </div>
 
-        <div id="tooltip" class="tooltip-off">
-            <p><span>¡Viste a Juan para un trabajo de Alcantarilla!</span><br />Haz clic en las puertas de los casilleros y arrastra  la prenda hacia Juan.</p>
+        <div id="alerta" class="alerta-off">
+            <div id="alerta-box" class="alerta-right alerta-right-off">
+                <p>Alerta</p>
+            </div>
         </div>
+
     </div>
 <script src="assets/data.js"></script>
+<script src="assets/js/modal.js"></script>
 <script src="assets/js/game.js"></script>
 <script>
     window.onload = function(){

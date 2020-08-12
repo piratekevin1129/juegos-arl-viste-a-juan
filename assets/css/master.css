@@ -5,6 +5,7 @@
     box-sizing: border-box;
     width: 768px;
     height: 578px;
+    overflow: hidden;
 }
 header{
     position: relative;
@@ -73,7 +74,7 @@ header{
 }
 .logo-arl{
     display: flex;
-    width: 21px;
+    width: 25px;
     height: 100%;
     position: relative;
     margin-left: 20px;
@@ -191,6 +192,7 @@ header{
 #casilleros .locker:nth-child(20){top:301px;left:662px;z-index: 1;}
 
 .locker-door{
+    opacity: 0.3;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -205,19 +207,14 @@ header{
     transform-origin: 100% center;
     -webkit-transform-origin: 100% center;
     -o-transform-origin: 100% center;
-
-    transition: transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
-    -webkit-transition: transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
 }
 .locked-door-close{
-    animation-name: abrir-puerta;
-    animation-duration: 0.2s;
-    animation-direction: reverse;
+    animation-name: cerrar-puerta;
+    animation-duration: 0.3s;
     animation-iteration-count: 1;
     animation-timing-function: linear;
-    -webkit-animation-name: abrir-puerta;
-    -webkit-animation-duration: 0.2s;
-    -webkit-animation-direction: reverse;
+    -webkit-animation-name: cerrar-puerta;
+    -webkit-animation-duration: 0.3s;
     -webkit-animation-iteration-count: 1;
     -webkit-animation-timing-function: linear;
 
@@ -238,15 +235,15 @@ header{
     transform: rotateY(110deg);
     -webkit-transform: rotateY(110deg);
     -o-transform: rotateY(110deg);
-    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3);
 }
-@keyframes abrir-puerta {
+@keyframes abrir-puerta{
     0%{
         transform: rotateY(0deg);
         -webkit-transform: rotateY(0deg);
         -o-transform: rotateY(0deg);
     }
-    90%{
+    70%{
         transform: rotateY(117deg);
         -webkit-transform: rotateY(117deg);
         -o-transform: rotateY(117deg);
@@ -257,13 +254,32 @@ header{
         -o-transform: rotateY(110deg);
     }
 }
+@keyframes cerrar-puerta{
+    0%{
+        transform: rotateY(110deg);
+        -webkit-transform: rotateY(110deg);
+        -o-transform: rotateY(110deg);
+    }
+    70%{
+        transform: rotateY(-20deg);
+        -webkit-transform: rotateY(-20deg);
+        -o-transform: rotateY(-20deg);
+    }
+    100%{
+        transform: rotateY(0deg);
+        -webkit-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+    }
+}
 
 
 .elemento{
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0px;
+    height: calc(100% - 10px);
+    height: -moz-calc(100% - 10px);
+    top: 10px;
     left: 0px;
     margin: 0px;
     padding: 0px;
@@ -277,12 +293,36 @@ header{
     background-repeat: no-repeat;
     background-position: center;
     box-sizing: border-box;
-    border: #000 solid 1px;
     cursor: grab;
     visibility: visible;
 }
 .elemento-off{
     visibility: hidden !important;
+}
+
+.elemento-label{
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 98%;
+    left: 1%;
+    top: 0px;
+    border-radius: 0px 0px 10px 10px;
+    background-color: #56AAC6;
+    padding: 5px;
+
+    height: auto;
+    min-height: 20px;
+
+    font-family: 'Barlow-Medium';
+    font-size: 12px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
 }
 
 #personaje{
@@ -308,8 +348,6 @@ header{
 }
 #personaje-areas{
     position: absolute;
-    width: 100%;
-    height: 100%;
     top: 0px;
     left: 0px;
 }
@@ -321,10 +359,17 @@ header{
     left: 0px;
 }
 .ropa{
+    cursor: pointer;
     position: absolute;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+
+    transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s, opacity 0.2s;
+    -webkit-transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s, opacity 0.2s;
+}
+.ropa:hover{
+    opacity: 0.7;
 }
 .ropa-off{
     display: none;
@@ -335,11 +380,11 @@ header{
 
 .area{
     position: absolute;
-    width: 20px;
-    height: 20px;
-    transform: translateX(-10px) translateY(-10px);
-    -webkit-transform: translateX(-10px) translateY(-10px);
-    -o-transform: translateX(-10px) translateY(-10px);
+    width: 30px;
+    height: 30px;
+    transform: translateX(-15px) translateY(-15px);
+    -webkit-transform: translateX(-15px) translateY(-15px);
+    -o-transform: translateX(-15px) translateY(-15px);
 }
 .area-off{
     display: none;
@@ -395,19 +440,19 @@ header{
     }
 }
 
-#personaje-areas div:nth-child(1){top:38%;left:50%;}
-#personaje-areas div:nth-child(2){top:13%;left:27%;}
-#personaje-areas div:nth-child(3){top:13%;left:66%;}
-#personaje-areas div:nth-child(4){top:92%;left:26%;}
-#personaje-areas div:nth-child(5){top:92%;left:75%;}
-#personaje-areas div:nth-child(6){top:13%;left:47%;}
-#personaje-areas div:nth-child(7){top:13%;left:47%;}
-#personaje-areas div:nth-child(8){top:4%;left:47%;}
-#personaje-areas div:nth-child(9){top:55%;left:16%;}
-#personaje-areas div:nth-child(10){top:55%;left:83%;}
-#personaje-areas div:nth-child(11){top:13%;left:47%;}
-#personaje-areas div:nth-child(12){top:11%;left:47%;}
-#personaje-areas div:nth-child(13){top:17%;left:47%;}
+#personaje-areas div:nth-child(1){top:152px;left:62px;}
+#personaje-areas div:nth-child(2){top:48px;left:38px;}
+#personaje-areas div:nth-child(3){top:48px;left:87px;}
+#personaje-areas div:nth-child(4){top:340px;left:62px;}
+#personaje-areas div:nth-child(5){top:340px;left:97px;}
+#personaje-areas div:nth-child(6){top:49px;left:62px;}
+#personaje-areas div:nth-child(7){top:49px;left:62px;}
+#personaje-areas div:nth-child(8){top:20px;left:62px;}
+#personaje-areas div:nth-child(9){top:204px;left:20px;}
+#personaje-areas div:nth-child(10){top:204px;left:109px;}
+#personaje-areas div:nth-child(11){top:49px;left:62px;}
+#personaje-areas div:nth-child(12){top:41px;left:62px;}
+#personaje-areas div:nth-child(13){top:61px;left:62px;}
                 
 #menu{
     position: absolute;
@@ -533,7 +578,6 @@ header{
 #elemento-drag{
     box-sizing: border-box;
     cursor: grabbing;
-    border:#000 solid 1px;
     position: absolute;
     background-repeat: no-repeat;
     background-size: contain;
@@ -561,11 +605,13 @@ header{
     -webkit-transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s, opacity 0.2s, visibility 0.2s;
 }
 
+/*************MODAL*************/
 #modal{
+    z-index: 500;
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    display: flex;
     top: 0px;
     left: 0px;
     
@@ -573,10 +619,20 @@ header{
     justify-content: center;
 }
 .modal-off{
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(0,0,0,0);
+
+    transition: opacity 0.5s, background-color 0.5s, visibility 0.5s;
+    -webkit-transition: opacity 0.5s, background-color 0.5s, visibility 0.5s;
 }
 .modal-on{
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(0,0,0,0.5);
+    
+    transition: opacity 0.5s, background-color 0.5s, visibility 0s;
+    -webkit-transition: opacity 0.5s, background-color 0.5s, visibility 0s;
 }
 
 #modal-box{
@@ -619,6 +675,10 @@ header{
     top: 10px;
     width: 25px;
     height: 25px;
+    cursor: pointer;
+
+    transition: background-color 0.3s, transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
+    -webkit-transition: background-color 0.3s, transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
 }
 #modal-close-btn::after,
 #modal-close-btn::before
@@ -648,6 +708,12 @@ header{
     -webkit-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
 }
+#modal-close-btn:hover{
+    background-color: #008B96;
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+}
 
 #modal-content{
     position: relative;
@@ -655,10 +721,11 @@ header{
     margin: 0px;
     padding: 0px;
     margin-bottom: 20px;
-    max-height: 400px;
+    max-height: 450px;
     overflow: auto;
 }
 
+/***********ESTILOS CONTENT DEL MODAL*************/
 .modal-instrucciones-gif{
     position: relative;
     width: 100%;
@@ -675,8 +742,54 @@ header{
     overflow: hidden;
     background-image: url(../images/instrucciones.gif);
 }
+.elementos-incorrectos{
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    overflow: auto;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 10px;
+}
+.elemento-incorrecto{
+    position: relative;
+    width: 60%;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    height: auto;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.elemento-incorrecto-img{
+    position: relative;
+    width: 50px;
+    height: auto;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    margin-right: 20px;
+}
+.elemento-incorrecto-p{
+    position: relative;
+    display: block;
+    margin: 0px;
+    padding: 0px;
 
-#modal-content p{
+    font-family: 'Barlow-Medium';
+    font-size: 13px;
+    color: #53565A;
+    text-align: left;
+    font-weight: normal;
+    line-height: normal;
+}
+
+#modal-content > p{
     display: block;
     width: 100%;
     margin: 0px;
@@ -689,6 +802,24 @@ header{
     font-weight: normal;
     line-height: normal;
     margin-bottom: 10px;
+}
+#modal-content > p span{
+    font-family: 'Barlow-Bold';
+    color: #555555;
+}   
+
+#modal-content > h6{
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    font-family: 'FSJoey-Bold';
+    font-size: 14px;
+    color: #0033A0;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
 }
 #modal-button{
     position: absolute;
@@ -717,7 +848,10 @@ header{
     background-color: #0097A3;
     cursor: pointer;
 }
+
+/**********TOOLTIP*********/
 #tooltip{
+    z-index: 400;
     position: absolute;
     width: 400px;
     border-radius: 0px 0px 0px 15px;
@@ -726,8 +860,10 @@ header{
     margin: 0px;
     padding: 10px;
 
-    top: 20%;
-    right: 0px;
+    top: 13%;
+
+    transition: right 0.4s;
+    -webkit-transition: right 0.4s;
 }
 #tooltip::after{
     content: "";
@@ -740,14 +876,14 @@ header{
     left: 100%;
 
     border-top: 6px solid rgba(0,0,0,0);
-    border-top: 6px solid rgba(0,0,0,0);
+    border-bottom: 6px solid rgba(0,0,0,0);
     border-left: 7px solid #56AAC6;
 }
 .tooltip-off{
-    display: none;
+    right: -400px;
 }
 .tooltip-on{
-    display: block;
+    right: 15px;
 }
 
 #tooltip p{
@@ -764,5 +900,116 @@ header{
     line-height: normal;
 }
 #tooltip p span{
+    font-family: 'Barlow-Bold';
+}
+
+/***************ALERT***************/
+#alerta{
+    z-index: 600;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0px;
+    left: 0px;
+}
+.alerta-off{
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgba(0,0,0,0);
+
+    transition: opacity 0.3s, background-color 0.3s, visibility 0.3s;
+    -webkit-transition: opacity 0.3s, background-color 0.3s, visibility 0.3s;
+}
+.alerta-on{
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(0,0,0,0.5);
+    
+    transition: opacity 0.1s, background-color 0.1s, visibility 0s;
+    -webkit-transition: opacity 0.1s, background-color 0.1s, visibility 0s;
+}
+
+#alerta-box{
+    z-index: 600;
+    position: absolute;
+    width: 200px;
+    background-color: #D9DF59;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 15px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+.alerta-right{
+    border-radius: 0px 0px 20px 0px;
+}
+.alerta-right-on{
+    opacity: 1;
+    visibility: visible;
+    transition: left 0.3s, opacity 0.3s, visibility 0s;
+    -webkit-transition: left 0.3s, opacity 0.3s, visibility 0s;
+}
+.alerta-right-off{
+    opacity: 0;
+    visibility: hidden;
+    transition: left 0.3s, opacity 0.3s, visibility 0.3s;
+    -webkit-transition: left 0.3s, opacity 0.3s, visibility 0.3s;
+}
+.alerta-left{
+    border-radius: 0px 0px 0px 20px;
+}
+.alerta-left-on{
+    opacity: 1;
+    visibility: visible;
+    transition: right 0.3s, opacity 0.3s, visibility 0s;
+    -webkit-transition: right 0.3s, opacity 0.3s, visibility 0s;
+}
+.alerta-left-off{
+    opacity: 0;
+    visibility: hidden;
+    transition: right 0.3s, opacity 0.3s, visibility 0.3s;
+    -webkit-transition: right 0.3s, opacity 0.3s, visibility 0.3s;
+}
+
+#alerta-box::after{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    top: 50%;
+    top: calc(50% - 6px);
+    top: -moz-calc(50% - 6px);
+}
+.alerta-right::after{
+    left: -7px;
+
+    border-top: 6px solid rgba(0,0,0,0);
+    border-bottom: 6px solid rgba(0,0,0,0);
+    border-right: 7px solid #D9DF59;
+}
+.alerta-left::after{
+    left: 100%;
+
+    border-top: 6px solid rgba(0,0,0,0);
+    border-bottom: 6px solid rgba(0,0,0,0);
+    border-left: 7px solid #D9DF59;
+}
+
+#alerta-box p{
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    font-family: 'Barlow-Medium';
+    font-size: 14px;
+    color: #0033A0;
+    text-align: left;
+    font-weight: normal;
+    line-height: normal;
+}
+#alerta-box p span{
     font-family: 'Barlow-Bold';
 }
