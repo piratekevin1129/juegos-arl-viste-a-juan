@@ -9,7 +9,7 @@ var elementos = [
 	},
 	{
 		id:1,
-		name:'Delantal',
+		name:'Delantal de carnaza',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[1],
 		x:48.7,
@@ -17,7 +17,7 @@ var elementos = [
 	},
 	{
 		id:2,
-		name:'Bata química',
+		name:'Bata',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[1],
 		x:47.5,
@@ -33,7 +33,7 @@ var elementos = [
 	},
 	{
 		id:21,
-		name:'Tapabocas',
+		name:'Tapabocas quirúrjico',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[13],
 		x:47.1,
@@ -57,7 +57,7 @@ var elementos = [
 	},
 	{
 		id:4,
-		name:'Audífonos',
+		name:'Orejeras',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[2],
 		x:47.3,
@@ -65,7 +65,7 @@ var elementos = [
 	},
 	{
 		id:16,
-		name:'Gafas',
+		name:'Gafas de seguridad',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[12],
 		x:46.5,
@@ -81,7 +81,7 @@ var elementos = [
 	},
 	{
 		id:11,
-		name:'Casco',
+		name:'Casco de seguridad',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[8],
 		x:46.9,
@@ -97,7 +97,7 @@ var elementos = [
 	},
 	{
 		id:5,
-		name:'Botas pantaneras',
+		name:'Botas de caucho',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[4],
 		x:50.3,
@@ -105,7 +105,7 @@ var elementos = [
 	},
 	{
 		id:6,
-		name:'Botas de combate',
+		name:'Botas',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[4],
 		x:50.6,
@@ -113,7 +113,7 @@ var elementos = [
 	},
 	{
 		id:7,
-		name:'Botas de laboratorio',
+		name:'Botas cuero blanco',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[4],
 		x:50,
@@ -129,7 +129,7 @@ var elementos = [
 	},
 	{
 		id:17,
-		name:'Guantes de combate',
+		name:'Guantes de tela',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[10],
 		x:48.8,
@@ -153,7 +153,7 @@ var elementos = [
 	},
 	{
 		id:20,
-		name:'Guantes de tela',
+		name:'Guantes de carnaza',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[10],
 		x:49,
@@ -169,7 +169,7 @@ var elementos = [
 	},
 	{
 		id:10,
-		name:'Mascara de hierro',
+		name:'Careta para esmerilar',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[7],
 		x:46.8,
@@ -181,27 +181,38 @@ var elementos = [
 var oficios = [
 	{
 		id:1,
-		name:'Quimico',
+		name:'Trabajo de Químico',
 		description:'Este trabajo es de químico',
-		elementos:[2,7,16,19,21]
+		elementos:[2,7,16,19,21],
+		personaje:1
 	},
 	{
 		id:2,
-		name:'Alturas',
+		name:'Trabajo en Alturas',
 		description:'Este trabajo es de alturas',
-		elementos:[3,6,11,13,17]
+		elementos:[3,6,11,13,17],
+		personaje:2
 	},
 	{
 		id:3,
-		name:'Alcantarilla',
+		name:'Trabajo en espacios confinados (alcantarillas)',
 		description:'Este trabajo es de alcantarilla',
-		elementos:[3,5,12,13,18]
+		elementos:[3,5,12,18],
+		personaje:2
 	},
 	{
 		id:4,
-		name:'Soldador',
+		name:'Trabajo de Soldador',
 		description:'Este trabajo es de soldador',
-		elementos:[1,6,8,10,20]
+		elementos:[1,8,10,20],
+		personaje:3
+	},
+	{
+		id:5,
+		name:'Trabajo con taladro',
+		description:'Este trabajo es con un taladro',
+		elementos:[11,22,4,6,17],
+		personaje:2
 	}
 ]
 

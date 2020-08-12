@@ -45,7 +45,7 @@ function setAlerta(data){
 	if(data.direction=='right'){
 		getE('alerta-box').style.left = (data.left[0]-data.left[2])+data.left[1]
 	}else{
-		getE('alerta-box').style.left = (data.left[0]+data.left[2])+data.left[1]
+		getE('alerta-box').style.right = (data.left[0]-data.left[2])+data.left[1]
 	}
 	
 	getE('alerta-box').className = 'alerta-'+data.direction+' alerta-'+data.direction+'-off'
@@ -56,7 +56,11 @@ function setAlerta(data){
 		clearTimeout(animacion_alerta)
 		animacion_alerta = null
 
-		getE('alerta-box').style.left = data.left[0]+data.left[1]
+		if(data.direction=='right'){
+			getE('alerta-box').style.left = data.left[0]+data.left[1]
+		}else{
+			getE('alerta-box').style.right = data.left[0]+data.left[1]
+		}
 		getE('alerta-box').className = 'alerta-'+data.direction+' alerta-'+data.direction+'-on'
 		animacion_alerta = setTimeout(function(){
 			clearTimeout(animacion_alerta)

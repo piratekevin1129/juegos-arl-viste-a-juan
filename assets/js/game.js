@@ -26,7 +26,10 @@ function getJob(){
 
 function setGame(){
 	getJob()
-	console.log(actual_job)
+	getE('oficio-txt').innerHTML = oficios[actual_job].name
+	getE('personaje-main').className = 'personaje-'+oficios[actual_job].personaje
+	getE('personaje-home').className = 'personaje-'+oficios[actual_job].personaje
+
 	setElementos()
 	loadElementos(0)
 	//putElementos()
@@ -93,10 +96,19 @@ function loadElementos(e){
 		putElementos()
 
 		////////AQUI EMPIEZA TODOO///////
-		setTooltip({
-			content:'<p><span>¡Viste a Juan para un trabajo de Alcantarilla!</span><br />Haz clic en las puertas de los casilleros y arrastra  la prenda hacia Juan.</p>',
-			delay:4000
-		})
+		
+		animation_start = setTimeout(function(){
+			clearTimeout(animation_start)
+			animation_start = null
+
+			setTooltip({
+				content:'<p><span>¡Viste a Juan para '+oficios[actual_job].name+'!</span><br />Haz clic en las puertas de los casilleros y arrastra  la prenda hacia Juan.</p>',
+				delay:4000
+			})
+			iniciarReloj()
+			getE('cargador').className = 'cargador-off'	
+		},1000)
+		
 	}else{
 		loadElemento(e)
 	}
@@ -285,6 +297,7 @@ function showParts(){
 		}
 	}
 }
+
 function hideParts(){
 	var areas = getE('personaje-areas').getElementsByClassName('area')
 	for(i = 0;i<areas.length;i++){
@@ -416,11 +429,29 @@ function comprarVestida(){
 			top:'50%',
 			left:[55,'%',2],
 			direction:'right',
-			content:'<p>Al personaje le hacen falta Elementos de protección personal.</p>',
+			content:'<p>Al personaje le hacen falta más <span>Elementos de protección personal</span>.</p>',
 			delay:3000
 		})
 	}
+}
 
+function endGame(){
+	//remove functions
+	document.removeEventListener('mousemove',moveElemento,false)
+	document.removeEventListener('mouseup',upElemento,false)
+
+	setAlerta({
+		top:'92%',
+		left:[18,'%',2],
+		direction:'left',
+		content:'<p>El tiempo se ha acabado <span>¡Vuelve a intentarlo!</span>.</p>',
+		delay:3000,
+		callback:reiniciarJuego(false)
+	})
+}
+
+function reiniciarJuego(restart){
+	
 }
 
 function getE(idname){

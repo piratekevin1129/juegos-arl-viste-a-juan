@@ -35,7 +35,7 @@
         <div id="game">
             <div id="home-scene" style="display: none;">
                 <div class="fondo"></div>
-                <div id="personaje-home"></div>
+                <div id="personaje-home" class="personaje-1"><div class="personaje-ojos"></div></div>
             </div>
             <div id="game-scene">
                 <div class="fondo"></div>
@@ -64,7 +64,7 @@
                     <div class="locker locker-inactive" id="casillero20"></div>
                 </div>
                 <div id="personaje">
-                    <div id="personaje-main"></div>
+                    <div id="personaje-main"><div class="personaje-ojos"></div></div>
                     <div id="personaje-ropas"></div>
                     <div id="personaje-areas">
                         <div class="area area-off" occuped="no" id="area1"></div>
@@ -109,7 +109,7 @@
                 <h2 id="modal-title">Instrucciones</h2>
                 <div id="modal-content">
                     <div class="modal-instrucciones-gif"></div>
-                    <p>Juan necesita tu ayuda para realizar un trabajo de: <br /><span>Alcantarilla</span></p>
+                    <p>Juan necesita tu ayuda para realizar un <br /><span id="oficio-txt"></span></p>
                     <p>Para ayudarlo busca en los casilleros el equipo de protección personal correcto, teniendo en cuenta el tipo de trabajo que le sea asignado.</p>
                     <p>Arrastra los elementos hasta la zona del cuerpo donde correspondan, una luz amarilla te guiará.</p>
                     <p>Luego haz clic en el botón comprobar para verificar si Juan esta vestido correctamente para realizar la actividad.</p>
@@ -124,11 +124,17 @@
             </div>
         </div>
 
+        <div id="cargador" class="cargador-on">
+            <div class="cargador-img"></div>
+            <div class="cargador-txt">Cargando...</div>
+        </div>
     </div>
 <script src="assets/data.js"></script>
+<script src="assets/js/timer.js"></script>
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/game.js"></script>
 <script>
+    var animation_start = null
     window.onload = function(){
         setGame()    
     }

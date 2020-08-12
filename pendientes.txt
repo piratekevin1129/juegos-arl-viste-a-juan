@@ -1,0 +1,5 @@
+sonidos
+interaccion final
+parar tiempo cuando se le da a la ayuda
+quitar por defecto siempre quimico
+integrar home coon game
