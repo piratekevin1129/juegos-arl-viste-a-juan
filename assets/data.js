@@ -1,5 +1,13 @@
 var elementos = [
 	{
+		id:4,
+		name:'Orejeras',
+		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
+		parte:[2],
+		x:47.3,
+		y:8.9
+	},
+	{
 		id:1,
 		name:'Delantal de carnaza',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
@@ -46,15 +54,7 @@ var elementos = [
 		parte:[6],
 		x:48.7,
 		y:14.1
-	},
-	{
-		id:4,
-		name:'Orejeras',
-		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
-		parte:[2],
-		x:47.3,
-		y:8.9
-	},
+	},	
 	{
 		id:16,
 		name:'Gafas de seguridad',
