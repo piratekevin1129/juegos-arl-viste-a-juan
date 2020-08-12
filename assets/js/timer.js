@@ -52,12 +52,15 @@ var time_scorm = 0
 var animacion_reloj = null
 
 function iniciarReloj(){
-	time_scorm = 60
+	time_scorm = 3*60
 	document.getElementById('tiempo-txt').innerHTML = '00:00'
 	animacion_reloj = setInterval(animacionReloj,1000)
 }
 function pararReloj(){
 	clearInterval(animacion_reloj)
+}
+function reanudarReloj(){
+    animacion_reloj = setInterval(animacionReloj,1000)
 }
 function animacionReloj(){
 	time_scorm-=1

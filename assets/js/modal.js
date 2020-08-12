@@ -2,6 +2,11 @@ function setModal(data){
 	var modal = getE('modal')
 	if(data.close){
 		getE('modal-close-btn').style.visibility = 'visible'
+		if(data.action){
+			getE('modal-close-btn').setAttribute('onclick',data.action+"()")
+		}else{
+			getE('modal-button').setAttribute('onclick',"unsetModal(null)")
+		}
 	}else{
 		getE('modal-close-btn').style.visibility = 'hidden'
 	}
@@ -10,15 +15,31 @@ function setModal(data){
 	getE('modal-content').innerHTML = data.content
 
 	if(data.button){
+		if(data.value!=null){
+			getE('modal-button').innerHTML = data.value
+		}else{
+			getE('modal-button').innerHTML = 'aceptar'
+		}
+
 		getE('modal-button').style.visibility = 'visible'
 		if(data.action){
-			getE('modal-button').setAttribute('onclick',"unsetModal('"+data.action+"')")
+			getE('modal-button').setAttribute('onclick',data.action+"()")
 		}else{
 			getE('modal-button').setAttribute('onclick',"unsetModal(null)")
 		}
 	}else{
 		getE('modal-button').style.visibility = 'hidden'
 		getE('modal-button').setAttribute('onclick','')
+	}
+
+	if(data.final!=null&&data.final!=undefined){
+		if(data.final){
+			getE('modal-box').className = 'modal-box-final'
+		}else{
+			getE('modal-box').className = ''
+		}
+	}else{
+		getE('modal-box').className = ''
 	}
 
 	modal.className = 'modal-on'
@@ -68,6 +89,9 @@ function setAlerta(data){
 
 			getE('alerta').className = 'alerta-off'
 			getE('alerta-box').className = 'alerta-'+data.direction+' alerta-'+data.direction+'-off'
+			if(data.callback!=null&&data.callback!=undefined){
+				data.callback()
+			}
 		},data.delay)
 	},100)
 }

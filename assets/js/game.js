@@ -11,6 +11,8 @@ var actual_job = -1
 var lista_elementos = []
 
 var game = getE('game')
+var game_scene = getE('game-scene')
+game_scene.style.visibility = 'hidden'
 var game_rect = game.getBoundingClientRect()
 
 function getJob(){
@@ -21,18 +23,88 @@ function getJob(){
 		job_exists = jobs_completed.includes(job)
 	}
 	actual_job = job
-	actual_job = 0
+	//actual_job = 0
+}
+
+function setInstrucciones(start){
+	var html = ''
+	html+='<div class="modal-instrucciones-gif"></div>'
+    html+='<p>Juan necesita tu ayuda para realizar un <br /><span id="oficio-txt">'+oficios[actual_job].name+'</span></p>'
+    html+='<p>Para ayudarlo busca en los casilleros el equipo de protección personal correcto, teniendo en cuenta el tipo de trabajo que le sea asignado.</p>'
+    html+='<p>Arrastra los elementos hasta la zona del cuerpo donde correspondan, una luz amarilla te guiará.</p>'
+    html+='<p>Luego haz clic en el botón comprobar para verificar si Juan esta vestido correctamente para realizar la actividad.</p>'
+
+    if(start){
+    	setModal({
+	    	close:false,
+			title:'Instrucciones',
+			content:html,
+			button:true,
+			value:'jugar',
+			final:false,
+			action:'empezarJuego'
+	    })
+    }else{
+    	setModal({
+	    	close:false,
+			title:'Instrucciones',
+			content:html,
+			button:true,
+			value:'aceptar',
+			final:false,
+			action:'seguirJuego'
+	    })
+    }
+    
+}
+
+function empezarJuego(){
+	getE('cargador').className = 'cargador-on'
+	unsetModal(function(){
+		game_scene.style.visibility = 'visible'
+		getE('home-scene').style.display = 'none'
+
+		setTooltip({
+			content:'<p><span>¡Viste a Juan para '+oficios[actual_job].name+'!</span><br />Haz clic en las puertas de los casilleros y arrastra  la prenda hacia Juan.</p>',
+			delay:4000
+		})
+		iniciarReloj()
+		getE('cargador').className = 'cargador-off'
+	})
 }
 
 function setGame(){
 	getJob()
-	getE('oficio-txt').innerHTML = oficios[actual_job].name
+	getE('oficio-title-txt').innerHTML = oficios[actual_job].name
 	getE('personaje-main').className = 'personaje-'+oficios[actual_job].personaje
 	getE('personaje-home').className = 'personaje-'+oficios[actual_job].personaje
+	getE('personaje-main-2').className = 'personaje-'+oficios[actual_job].personaje
 
 	setElementos()
 	loadElementos(0)
-	//putElementos()
+}
+
+function setElementos(){
+	var elementos_obligatorios = oficios[actual_job].elementos
+	for(i = 0;i<elementos_obligatorios.length;i++){
+		lista_elementos.push(elementos_obligatorios[i])
+	}
+
+	while(lista_elementos.length<20){
+		var elemento_random = getRand(0,(elementos.length-1))
+		var elemento_random_exists = lista_elementos.includes(elementos[elemento_random].id)
+		
+		while(elemento_random_exists){
+			elemento_random = getRand(0,(elementos.length-1))
+			elemento_random_exists = lista_elementos.includes(elementos[elemento_random].id)
+		}
+		lista_elementos.push(elementos[elemento_random].id)
+	}
+
+	
+	//desorganizar lista de elementos
+	unorderArrayElementos(lista_elementos.length)
+	console.log(lista_elementos)
 }
 
 function unorderArrayElementos(long){
@@ -52,32 +124,6 @@ function unorderArrayElementos(long){
 		nuevo.push(lista_elementos[desorden[i]])
 	}
 	lista_elementos = nuevo
-}
-
-function setElementos(){
-	var elementos_obligatorios = oficios[actual_job].elementos
-	for(i = 0;i<elementos_obligatorios.length;i++){
-		var indice = elementos_obligatorios[i]//esto es un array
-		for(j = 0;j<indice.length;j++){
-			lista_elementos.push(indice[j])
-		}
-	}
-
-	while(lista_elementos.length<20){
-		var elemento_random = getRand(0,(elementos.length-1))
-		var elemento_random_exists = lista_elementos.includes(elementos[elemento_random].id)
-		
-		while(elemento_random_exists){
-			elemento_random = getRand(0,(elementos.length-1))
-			elemento_random_exists = lista_elementos.includes(elementos[elemento_random].id)
-		}
-		lista_elementos.push(elementos[elemento_random].id)
-	}
-
-	
-	//desorganizar lista de elementos
-	unorderArrayElementos(lista_elementos.length)
-	console.log(lista_elementos)
 }
 
 function findElementIndex(id){
@@ -101,12 +147,8 @@ function loadElementos(e){
 			clearTimeout(animation_start)
 			animation_start = null
 
-			setTooltip({
-				content:'<p><span>¡Viste a Juan para '+oficios[actual_job].name+'!</span><br />Haz clic en las puertas de los casilleros y arrastra  la prenda hacia Juan.</p>',
-				delay:4000
-			})
-			iniciarReloj()
 			getE('cargador').className = 'cargador-off'	
+			setInstrucciones(true)
 		},1000)
 		
 	}else{
@@ -219,15 +261,14 @@ function putElementos(){
 		div_label.className = 'elemento-label'
 		div_label.innerHTML = elementos[indx].name
 
-		casillero_parent.appendChild(div_label)
 		casillero_parent.appendChild(div_elemento)
+		casillero_parent.appendChild(div_label)
 		casillero_parent.appendChild(div_puerta)
 	}
 }
 
 var actual_puerta = null
 var actual_casillero = null
-var frente_actual = 20
 
 function clickPuerta(door,idlocker){
 	if(actual_casillero!=null){
@@ -366,7 +407,10 @@ function upElemento(e){
 
 /////////////////COMPROBAR////////////////
 
-function comprarVestida(){
+var animacion_personaje_final = null
+function compararVestida(){
+	pararReloj()
+
 	var elementos_reales = oficios[actual_job].elementos
 	var areas_reales = []
 
@@ -400,12 +444,59 @@ function comprarVestida(){
 			}
 		}
 
+		var html = ''
 		if(incorrectos.length==0){
 			//todo excelentisimo
-			alert("bien toro")
+			getE('fondo-casilleros').classList.add('to-left')
+			getE('casilleros').classList.add('to-left')
+			getE('personaje').classList.add('to-left-2')
+
+			//clonar personaje-ropas
+			var element_info_default = {name:'',description:'',id:0}
+			for(i = 0;i<ropas.length;i++){
+				var prenda = ropas[i].getAttribute('prenda')
+				if(prenda!='0'){
+					var original = ropas[i]
+					var nueva_ropa = document.createElement('div')
+					nueva_ropa.className = original.className
+					nueva_ropa.setAttribute('style',original.getAttribute('style'))
+					nueva_ropa.setAttribute('onclick','clickNuevaRopa('+prenda+')')
+
+					getE('personaje-ropas-2').appendChild(nueva_ropa)
+					var info = elementos[findElementIndex(prenda)]
+					element_info_default = info
+				}
+				
+			}
+			animacion_personaje_final = setTimeout(function(){
+				clearTimeout(animacion_personaje_final)
+				animacion_personaje_final = null
+
+				getE('personaje-2').className = 'personaje-on'
+				getE('personaje').classList.add('personaje-off')
+			},1000)
+			
+
+			html = ''
+			html+='<p>Has vestido a Juan correctamente y ahora está listo para trabajar</p>'
+			html+='<p>Haz clic en cada uno de los equipos de protección para ver su información</p>'
+			html+='<div class="epp-info">'
+				html+='<h2 id="epp-info-title">'+element_info_default.name+'</h2>'
+				html+='<img id="epp-info-image" src="assets/images/elementos/'+element_info_default.id+'-p.png" />'
+				html+='<p id="epp-info-description">'+element_info_default.description+'</p>'
+			html+='</div>'
+			setModal({
+				close:false,
+				title:'¡Muy Bien!',
+				content:html,
+				button:true,
+				value:'jugar de nuevo',
+				final:true,
+				action:'repeatGame'
+			})
 		}else{
 			//hay elementos malos
-			var html = ''
+			html = ''
 			html+='<p>Estos <span>NO</span> son los equipos de protección correctos</p>'
 			html+='<div class="elementos-incorrectos">'
 			for(i = 0;i<incorrectos.length;i++){
@@ -417,11 +508,30 @@ function comprarVestida(){
 			}
 			html+='</div>'
 			html+='<h6>Sigue Intentándolo</h6>'
+
+			//quitar los malos
+			for(i = 0;i<incorrectos.length;i++){
+				var element_data = elementos[findElementIndex(incorrectos[i])]
+				var epp = getE('elemento'+element_data.id)
+				epp.classList.remove('elemento-off')//ponerlo visible en el casillero
+
+				//quitar la ropa
+				var ropa = getE('ropa'+element_data.id)
+				ropa.className = 'ropa ropa-off'
+				ropa.setAttribute('prenda','0')
+
+				//poner area desocupada
+				var area = getE('area'+element_data.parte[0])
+				area.setAttribute('occuped','no')
+			}
+
 			setModal({
 				close:true,
 				title:'¡ALERTA!',
 				content:html,
-				button:false
+				button:false,
+				action:'seguirJuego',
+				final:false
 			})
 		}
 	}else{
@@ -430,9 +540,18 @@ function comprarVestida(){
 			left:[55,'%',2],
 			direction:'right',
 			content:'<p>Al personaje le hacen falta más <span>Elementos de protección personal</span>.</p>',
-			delay:3000
+			delay:3000,
+			callback:continuarJuego
 		})
 	}
+}
+
+function clickNuevaRopa(id){
+	var element_data = elementos[findElementIndex(id)]
+
+	getE('epp-info-title').innerHTML = element_data.name
+	getE('epp-info-image').src = 'assets/images/elementos/'+element_data.id+'-p.png'
+	getE('epp-info-description').innerHTML = element_data.description
 }
 
 function endGame(){
@@ -446,12 +565,66 @@ function endGame(){
 		direction:'left',
 		content:'<p>El tiempo se ha acabado <span>¡Vuelve a intentarlo!</span>.</p>',
 		delay:3000,
-		callback:reiniciarJuego(false)
+		callback:reiniciarJuego
 	})
 }
 
-function reiniciarJuego(restart){
-	
+function repeatGame(){//repetir por ganar el juego
+	location.reload()
+	//unsetModal(function(){
+		
+	//})
+}
+
+function reiniciarJuego(){//reiniciar, por acabarse el tiempo
+	//cerrar todos los casilleros
+	var puertas = getE('casilleros').getElementsByClassName('locker')
+	for(i = 0;i<puertas.length;i++){
+		var door = puertas[i].getElementsByClassName('locker-door')[0]
+		var epp = puertas[i].getElementsByTagName('div')[0]
+		var e = epp.getElementsByTagName('div')[0]
+		//console.log((i+1))
+		e.classList.remove('elemento-off')
+		door.className = 'locker-door'
+	}
+	actual_puerta = null
+	actual_casillero = null
+
+	//resetear todas las areas
+	var areas = getE('personaje-areas').getElementsByClassName('area')
+	for(i = 0;i<areas.length;i++){
+		areas[i].setAttribute('occuped','no')
+		areas[i].className = 'area area-off'
+	}
+
+	//resetear ropas
+	var ropas = getE('personaje-ropas').getElementsByClassName('ropa')
+	for(i = 0;i<ropas.length;i++){
+		ropas[i].setAttribute('prenda','0')
+		ropas[i].className = 'ropa ropa-off'
+	}
+
+	getE("elemento-drag").className = "elemento-drag-off"
+
+	setTooltip({
+		content:'<p><span>¡Viste a Juan para '+oficios[actual_job].name+'!</span><br />Haz clic en las puertas de los casilleros y arrastra  la prenda hacia Juan.</p>',
+		delay:4000
+	})
+	iniciarReloj()
+}
+
+function continuarJuego(){
+	reanudarReloj()
+}
+function seguirJuego(){//funcion para el modal
+	unsetModal(function(){
+		continuarJuego()
+	})
+}
+
+function verAyuda(){
+	pararReloj()
+	setInstrucciones(false)
 }
 
 function getE(idname){

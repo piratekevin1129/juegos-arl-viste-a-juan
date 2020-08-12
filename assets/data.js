@@ -1,13 +1,5 @@
 var elementos = [
 	{
-		id:15,
-		name:'Gorra',
-		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
-		parte:[8],
-		x:46.6,
-		y:3.4
-	},
-	{
 		id:1,
 		name:'Delantal de carnaza',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
@@ -36,7 +28,7 @@ var elementos = [
 		name:'Tapabocas quirúrjico',
 		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
 		parte:[13],
-		x:47.1,
+		x:46,
 		y:17
 	},
 	{
@@ -94,6 +86,14 @@ var elementos = [
 		parte:[8],
 		x:46.9,
 		y:3.1
+	},
+	{
+		id:15,
+		name:'Gorra',
+		description:'Lorem ipsu dolor e tore adamo que nuestra e la cosi napoleta a bimar uj hastilape saldona abiamo',
+		parte:[8],
+		x:46.6,
+		y:3.4
 	},
 	{
 		id:5,

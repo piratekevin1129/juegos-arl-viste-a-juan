@@ -83,6 +83,27 @@ header{
     background-repeat: no-repeat;
     background-image: url(../images/logo-arl.svg);
 }
+#oficio-title{
+    position: relative;
+    display: flex;
+    height: 100%;
+    justify-content: right;
+    margin-right: 20px;
+    align-items: center;
+}
+#oficio-title h2{
+    display: block;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+
+    font-family: 'Barlow-Medium';
+    font-size: 12px;
+    font-weight: normal;
+    color: #FFFFFF;
+    text-align: right;
+    line-height: normal;
+}
 
 #game{
     position: relative;
@@ -94,7 +115,6 @@ header{
     height: calc(100% - 73px);
     height: -moz-calc(100% - 73px);
     box-sizing: border-box;
-    border: #000 solid 1px;
 }
         
 #home-scene{
@@ -196,7 +216,20 @@ header{
     left: 0px;
 }
 
-.fondo-casilleros{
+.to-left{
+    left: -190px !important;
+
+    transition: left 1s;
+    -webkit-transition: left 1s;
+}
+.to-left-2{
+    left: 11% !important;
+
+    transition: left 1s;
+    -webkit-transition: left 1s;
+}
+
+#fondo-casilleros{
     position: absolute;
     width: 768px;
     height: 472px;
@@ -215,7 +248,6 @@ header{
     height: 472px;
     top: 5%;
     left: 0px;
-    border: #FF0000 solid 1px;
 }
 .locker{
     position: absolute;
@@ -252,7 +284,6 @@ header{
 #casilleros .locker:nth-child(20){top:301px;left:662px;z-index: 1;}
 
 .locker-door{
-    opacity: 0.3;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -354,7 +385,7 @@ header{
     background-position: center;
     box-sizing: border-box;
     cursor: grab;
-    visibility: visible;
+    visibility: inherit;
 }
 .elemento-off{
     visibility: hidden !important;
@@ -394,7 +425,29 @@ header{
     top: 9%;
     left: 36%;
 }
-#personaje-main{
+#personaje-2{
+    position: absolute;
+    display: block;
+    width: 132px;
+    height: 370px;
+    
+    top: 20.5%;
+    left: 11%;
+}
+.personaje-off{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s;
+    -webkit-transition: visibility 0.5s, opacity 0.5s;
+}
+.personaje-on{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.5s;
+    -webkit-transition: visibility 0s, opacity 0.5s;
+}
+
+#personaje-main,#personaje-main-2{
     position: absolute;
     top: 0px;
     left: 0px;
@@ -405,12 +458,13 @@ header{
     background-position: center;
     background-repeat: no-repeat;
 }
+
 #personaje-areas{
     position: absolute;
     top: 0px;
     left: 0px;
 }
-#personaje-ropas{
+#personaje-ropas,#personaje-ropas-2{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -427,8 +481,13 @@ header{
     transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s, opacity 0.2s;
     -webkit-transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s, opacity 0.2s;
 }
-.ropa:hover{
+#personaje-ropas .ropa:hover{
     opacity: 0.7;
+}
+#personaje-ropas-2 .ropa:hover{
+    filter: brightness(150%);
+    -webkit-filter: brightness(150%);
+    -o-filter: brightness(150%);
 }
 .ropa-off{
     display: none;
@@ -500,7 +559,7 @@ header{
 }
 
 #personaje-areas div:nth-child(1){top:152px;left:62px;}
-#personaje-areas div:nth-child(2){top:48px;left:38px;}
+#personaje-areas div:nth-child(2){top:7px;left:62px;}
 #personaje-areas div:nth-child(3){top:48px;left:87px;}
 #personaje-areas div:nth-child(4){top:340px;left:62px;}
 #personaje-areas div:nth-child(5){top:340px;left:97px;}
@@ -553,12 +612,15 @@ header{
     font-weight: normal;
     line-height: normal;
     text-transform: uppercase;
+
+    transition: box-shadow 0.3s;
+    -webkit-transition: box-shadow 0.3s;
 }
 #comprobar-btn:hover,
 #music-btn:hover,
 #ayuda-btn:hover
 {
-    box-shadow: -1px 1px 2px 1px rgba(0,0,0,0.5);
+    box-shadow: -1px 1px 2px 1px rgba(0,0,0,0.3);
 }
 
 #music-btn,
@@ -578,6 +640,9 @@ header{
     background-position: center;
     background-size: 22px 22px;
     cursor: pointer;
+
+    transition: box-shadow 0.3s;
+    -webkit-transition: box-shadow 0.3s;
 }
 
 #ayuda-btn{
@@ -704,6 +769,9 @@ header{
     background-color: #FFFFFF;
     border-radius: 5px;
     box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.2);
+}
+.modal-box-final{
+    left: 13%;
 }
 
 #modal-title{
@@ -847,6 +915,55 @@ header{
     font-weight: normal;
     line-height: normal;
 }
+.epp-info{
+    position: relative;
+    display: block;
+    margin: 10px 0px;
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    overflow: auto;
+    padding: 0px;
+}
+#epp-info-title{
+    display: block;
+    width: 100%;
+
+    font-family: 'Barlow-SemiBold';
+    font-size: 15px;
+    color: #0033A0;
+    text-align: center;
+    font-weight: normal;
+    line-height: normal;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 10px;
+}
+#epp-info-image{
+    display: block;
+    width: auto;
+    max-height: 100px;
+    margin: 0px auto;
+    padding: 0px;
+    
+    margin-bottom: 10px;
+}
+#epp-info-description{
+    display: block;
+    width: 100%;
+
+    font-family: 'Barlow-Medium';
+    font-size: 13px;
+    color: #53565A;
+    text-align: justify;
+    font-weight: normal;
+    line-height: normal;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 10px;
+}
 
 #modal-content > p{
     display: block;
@@ -883,7 +1000,7 @@ header{
 #modal-button{
     position: absolute;
     display: block;
-    width: 116px;
+    width: 160px;
     height: 41px;
     border-radius: 4px;
     background-color: #00AEC7;
@@ -898,12 +1015,15 @@ header{
     line-height: normal;
     bottom: -20px;
     left: 50%;
-    left: calc(50% - 58px);
-    left: -moz-calc(50% - 58px);
-
+    left: calc(50% - 80px);
+    left: -moz-calc(50% - 80px);
     box-shadow: 0px 4px 3px 2px rgba(0,0,0,0.2);
+
+    transition: background-color 0.3s;
+    -webkit-transition: background-color 0.3s;
 }
 #modal-button:hover{
+
     background-color: #0097A3;
     cursor: pointer;
 }
