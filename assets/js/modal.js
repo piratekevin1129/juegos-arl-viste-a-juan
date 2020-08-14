@@ -1,14 +1,14 @@
 function setModal(data){
 	var modal = getE('modal')
 	if(data.close){
-		getE('modal-close-btn').style.visibility = 'visible'
+		getE('modal-close-btn').style.display = 'block'
 		if(data.action){
 			getE('modal-close-btn').setAttribute('onclick',data.action+"()")
 		}else{
 			getE('modal-button').setAttribute('onclick',"unsetModal(null)")
 		}
 	}else{
-		getE('modal-close-btn').style.visibility = 'hidden'
+		getE('modal-close-btn').style.display = 'none'
 	}
 
 	getE('modal-title').innerHTML = data.title
@@ -21,14 +21,14 @@ function setModal(data){
 			getE('modal-button').innerHTML = 'aceptar'
 		}
 
-		getE('modal-button').style.visibility = 'visible'
+		getE('modal-button').style.display = 'block'
 		if(data.action){
 			getE('modal-button').setAttribute('onclick',data.action+"()")
 		}else{
 			getE('modal-button').setAttribute('onclick',"unsetModal(null)")
 		}
 	}else{
-		getE('modal-button').style.visibility = 'hidden'
+		getE('modal-button').style.display = 'none'
 		getE('modal-button').setAttribute('onclick','')
 	}
 

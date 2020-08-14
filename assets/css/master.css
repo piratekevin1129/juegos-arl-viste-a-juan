@@ -262,26 +262,6 @@ header{
 .locker-inactive{
     
 }
-#casilleros .locker:nth-child(1){top:5px;left:11px;z-index: 20;}
-#casilleros .locker:nth-child(2){top:5px;left:105px;width:91px;z-index: 19;}
-#casilleros .locker:nth-child(3){top:103px;left:11px;z-index: 18;}
-#casilleros .locker:nth-child(4){top:103px;left:105px;width:91px;z-index: 17;}
-#casilleros .locker:nth-child(5){top:201px;left:11px;z-index: 16;}
-#casilleros .locker:nth-child(6){top:201px;left:105px;width:91px;z-index: 15;}
-#casilleros .locker:nth-child(7){top:301px;left:11px;z-index: 14;}
-#casilleros .locker:nth-child(8){top:301px;left:105px;width:91px;z-index: 13;}
-#casilleros .locker:nth-child(9){top:5px;left:471px;width:92px;z-index: 12;}
-#casilleros .locker:nth-child(10){top:5px;left:568px;z-index: 11;}
-#casilleros .locker:nth-child(11){top:5px;left:662px;z-index: 10;}
-#casilleros .locker:nth-child(12){top:103px;left:471px;width:92px;z-index: 9;}
-#casilleros .locker:nth-child(13){top:103px;left:568px;z-index: 8;}
-#casilleros .locker:nth-child(14){top:103px;left:662px;z-index: 7;}
-#casilleros .locker:nth-child(15){top:201px;left:471px;width:92px;z-index: 6;}
-#casilleros .locker:nth-child(16){top:201px;left:568px;z-index: 5;}
-#casilleros .locker:nth-child(17){top:201px;left:662px;z-index: 4;}
-#casilleros .locker:nth-child(18){top:301px;left:471px;width:92px;z-index: 3;}
-#casilleros .locker:nth-child(19){top:301px;left:568px;z-index: 2;}
-#casilleros .locker:nth-child(20){top:301px;left:662px;z-index: 1;}
 
 .locker-door{
     position: absolute;
@@ -291,76 +271,13 @@ header{
     left: 0px;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     background-image: url(../images/locker-door.svg);
     cursor: pointer;
 
     transform-origin: 100% center;
     -webkit-transform-origin: 100% center;
     -o-transform-origin: 100% center;
-}
-.locked-door-close{
-    animation-name: cerrar-puerta;
-    animation-duration: 0.3s;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
-    -webkit-animation-name: cerrar-puerta;
-    -webkit-animation-duration: 0.3s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: linear;
-
-    transform: rotateY(0deg);
-    -webkit-transform: rotateY(0deg);
-    -o-transform: rotateY(0deg);
-}
-.locked-door-open{
-    animation-name: abrir-puerta;
-    animation-duration: 0.4s;
-    animation-iteration-count: 1;
-    animation-timing-function: linear;
-    -webkit-animation-name: abrir-puerta;
-    -webkit-animation-duration: 0.4s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: linear;
-
-    transform: rotateY(110deg);
-    -webkit-transform: rotateY(110deg);
-    -o-transform: rotateY(110deg);
-    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3);
-}
-@keyframes abrir-puerta{
-    0%{
-        transform: rotateY(0deg);
-        -webkit-transform: rotateY(0deg);
-        -o-transform: rotateY(0deg);
-    }
-    70%{
-        transform: rotateY(117deg);
-        -webkit-transform: rotateY(117deg);
-        -o-transform: rotateY(117deg);
-    }
-    100%{
-        transform: rotateY(110deg);
-        -webkit-transform: rotateY(110deg);
-        -o-transform: rotateY(110deg);
-    }
-}
-@keyframes cerrar-puerta{
-    0%{
-        transform: rotateY(110deg);
-        -webkit-transform: rotateY(110deg);
-        -o-transform: rotateY(110deg);
-    }
-    70%{
-        transform: rotateY(-20deg);
-        -webkit-transform: rotateY(-20deg);
-        -o-transform: rotateY(-20deg);
-    }
-    100%{
-        transform: rotateY(0deg);
-        -webkit-transform: rotateY(0deg);
-        -o-transform: rotateY(0deg);
-    }
 }
 
 
@@ -618,12 +535,16 @@ header{
 }
 #comprobar-btn:hover,
 #music-btn:hover,
-#ayuda-btn:hover
+#ayuda-btn:hover,
+#comprobar2-btn:hover
 {
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
     -o-transform: scale(1.1);
     box-shadow: -1px 1px 2px 1px rgba(0,0,0,0.3);
+}
+#comprobar2-btn{
+    display: none;
 }
 
 #music-btn,
