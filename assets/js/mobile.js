@@ -35,13 +35,24 @@ function clickElemento(img,ind){
 	}
 	if(partes_habilitadas.length>0){
 		var ropa_ocupada = elementos[findElementIndex(partes_habilitadas[0])]
-		setAlerta({
-			top:'50%',
-			left:[5,'%',2],
-			direction:'right',
-			content:'<p>Debes remover <span>'+ropa_ocupada.name+'</span> para colocar este elemento</p>',
-			delay:3000
-		})
+		if(isresponsive){
+			setAlerta({
+				top:'50%',
+				left:[5,'%',2],
+				direction:'right',
+				content:'<p>Debes remover <span>'+ropa_ocupada.name+'</span> para colocar este elemento</p>',
+				delay:3000
+			})
+		}else{
+			setAlerta({
+				top:'50%',
+				left:[50,'%',2],
+				direction:'right',
+				content:'<p>Debes remover <span>'+ropa_ocupada.name+'</span> para colocar este elemento</p>',
+				delay:3000
+			})
+		}
+		
 	}else{
 		//si ya habia uno seleccionado, ponerlo en no seleccionado
 		if(actual_img!=null){
@@ -90,7 +101,7 @@ function clickArea(area_tocada){
 		}else{
 			setAlerta({
 				top:'50%',
-				left:[55,'%',2],
+				left:[5,'%',2],
 				direction:'right',
 				content:'<p>Debes Seleccionar un Elemento del casillero para colocarlo aqui</p>',
 				delay:3000

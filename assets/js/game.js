@@ -620,7 +620,7 @@ function compararVestida(){
 			})
 		}
 	}else{
-		if(ismobile){
+		if(isresponsive){
 			setAlerta({
 				top:'50%',
 				left:[5,'%',2],
