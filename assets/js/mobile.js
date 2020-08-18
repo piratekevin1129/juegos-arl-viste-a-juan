@@ -1,4 +1,5 @@
 var ismobile = false
+var isresponsive = false
 var actual_dimension = 1
 var tra_contenedor = document.getElementById('tra_contenedor')
 var instrucciones_label = ""
@@ -6,7 +7,12 @@ var instrucciones_label = ""
 function prepareWindow(){
     ismobile = isMobileDevice()
     //ismobile = true
-    console.log(ismobile)
+
+    if(window.innerWidth<560){
+    	isresponsive = true
+    }
+    //ismobile = true
+    console.log(ismobile,isresponsive)
     //document.getElementById('instrucciones_txt').innerHTML = instrucciones_label
 }
 

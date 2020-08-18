@@ -28,7 +28,12 @@ function getJob(){
 
 function setInstrucciones(start){
 	var html = ''
-	html+='<div class="modal-instrucciones-gif"></div>'
+	if(ismobile){
+		html+='<div class="modal-instrucciones-gif"><img src="assets/images/instrucciones_sp.gif" /></div>'
+	}else{
+		html+='<div class="modal-instrucciones-gif"><img src="assets/images/instrucciones_pc.gif" /></div>'
+	}
+	
     html+='<p>Juan necesita tu ayuda para realizar un <br /><span id="oficio-txt">'+oficios[actual_job].name+'</span></p>'
     html+='<p>Para ayudarlo busca en los casilleros el equipo de protección personal correcto, teniendo en cuenta el tipo de trabajo que le sea asignado.</p>'
     if(ismobile){
@@ -77,7 +82,7 @@ function empezarJuego(){
 		
 		getE('cargador').className = 'cargador-off'
 
-		if(ismobile){
+		if(isresponsive){
 			getE('cursor-swipe').classList.add('cursor-swipe-animation-1')
 			getE('fondo-casilleros').classList.add('cursor-swipe-animation-2')
 			getE('casilleros').classList.add('cursor-swipe-animation-2')
@@ -94,11 +99,12 @@ function empezarJuego(){
 				animacion_swipe = null
 
 				iniciarReloj()
+				cronometro_mp3.play()
 			},6000)
 		}else{
 			iniciarReloj()
+			cronometro_mp3.play()
 		}
-		
 	})
 }
 
@@ -703,6 +709,7 @@ function reiniciarJuego(){//reiniciar, por acabarse el tiempo
 		delay:4000
 	})
 	iniciarReloj()
+	cronometro_mp3.play()
 }
 
 function continuarJuego(){
@@ -721,4 +728,14 @@ function verAyuda(){
 
 function getE(idname){
 	return document.getElementById(idname)
+}
+
+function clickAudio(btn){
+	if(btn.className=='music-on'){
+		cronometro_mp3.volume = 0
+		btn.className = 'music-off'
+	}else{
+		cronometro_mp3.volume = 1
+		btn.className = 'music-on'
+	}
 }

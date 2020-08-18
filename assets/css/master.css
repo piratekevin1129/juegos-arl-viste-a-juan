@@ -852,18 +852,17 @@ header{
 .modal-instrucciones-gif{
     position: relative;
     width: 100%;
-    height: 162px;
+    height: auto;
     border-radius: 10px;
     margin: 0px;
     margin-bottom: 10px;
     padding: 0px;
-
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    background-color: #F9F9F9;
-    overflow: hidden;
-    background-image: url(../images/instrucciones.gif);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-instrucciones-gif img{
+    display: block;
 }
 .elementos-incorrectos{
     position: relative;
@@ -1014,6 +1013,7 @@ header{
     left: calc(50% - 80px);
     left: -moz-calc(50% - 80px);
     box-shadow: 0px 2px 3px 2px rgba(0,0,0,0.2);
+    cursor: pointer;
 
     transition: background-color 0.3s, transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
     -webkit-transition: background-color 0.3s, transform 0.3s, -webkit-transform 0.3s, -o-transform 0.3s;
@@ -1023,7 +1023,7 @@ header{
     -webkit-transform: scale(1.1);
     -o-transform: scale(1.1);
     background-color: #0097A3;
-    cursor: pointer;
+    
 }
 
 /**********TOOLTIP*********/

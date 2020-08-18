@@ -1,5 +1,0 @@
-instrucciones gif mobile
-sonido de modal en alertas tambien
-sonido de cronometro
-boton de musica
-quitar cursor pointer en mobile

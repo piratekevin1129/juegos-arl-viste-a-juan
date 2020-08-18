@@ -90,7 +90,7 @@
                     <div class="menu-left">
                         <button id="comprobar-btn" onclick="compararVestida()">Comprobar</button>
                         <button id="comprobar2-btn" onclick="compararVestida()"></button>
-                        <button id="music-btn" class="music-on"></button>
+                        <button id="music-btn" class="music-on" onclick="clickAudio(this)"></button>
                         <button id="ayuda-btn" onclick="verAyuda()"></button>
                     </div>
                     <div class="menu-right">
@@ -161,6 +161,7 @@ window.onload = function(){
     coger_mp3 = data
     loadAudio({src:'assets/media/cronometro.mp3',callBack:function(data){
     cronometro_mp3 = data
+    cronometro_mp3.addEventListener('ended',function(){cronometro_mp3.play()},false)
     loadAudio({src:'assets/media/ganar.mp3',callBack:function(data){
     ganar_mp3 = data
 
