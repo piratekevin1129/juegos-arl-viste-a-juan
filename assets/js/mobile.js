@@ -5,7 +5,7 @@ var instrucciones_label = ""
 
 function prepareWindow(){
     ismobile = isMobileDevice()
-    ismobile = true
+    //ismobile = true
     console.log(ismobile)
     //document.getElementById('instrucciones_txt').innerHTML = instrucciones_label
 }

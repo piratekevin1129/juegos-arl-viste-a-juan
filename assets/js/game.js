@@ -617,7 +617,7 @@ function compararVestida(){
 		if(ismobile){
 			setAlerta({
 				top:'50%',
-				left:[55,'%',2],
+				left:[5,'%',2],
 				direction:'right',
 				content:'<p>Al personaje le hacen falta más <span>Elementos de protección personal</span>.</p>',
 				delay:3000,
@@ -626,7 +626,7 @@ function compararVestida(){
 		}else{
 			setAlerta({
 				top:'50%',
-				left:[5,'%',2],
+				left:[55,'%',2],
 				direction:'right',
 				content:'<p>Al personaje le hacen falta más <span>Elementos de protección personal</span>.</p>',
 				delay:3000,
