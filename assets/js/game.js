@@ -31,7 +31,12 @@ function setInstrucciones(start){
 	html+='<div class="modal-instrucciones-gif"></div>'
     html+='<p>Juan necesita tu ayuda para realizar un <br /><span id="oficio-txt">'+oficios[actual_job].name+'</span></p>'
     html+='<p>Para ayudarlo busca en los casilleros el equipo de protección personal correcto, teniendo en cuenta el tipo de trabajo que le sea asignado.</p>'
-    html+='<p>Arrastra los elementos hasta la zona del cuerpo donde correspondan, una luz amarilla te guiará.</p>'
+    if(ismobile){
+    	html+='<p>Toca un elemento y luego toca una zona del cuerpo para colocarlo, una luz blanca te guiará.</p>'
+    }else{
+    	html+='<p>Arrastra los elementos hasta la zona del cuerpo donde correspondan, una luz blanca te guiará.</p>'	
+    }
+    
     html+='<p>Luego haz clic en el botón comprobar para verificar si Juan esta vestido correctamente para realizar la actividad.</p>'
 
     if(start){
@@ -58,6 +63,7 @@ function setInstrucciones(start){
     
 }
 
+var animacion_swipe = null
 function empezarJuego(){
 	getE('cargador').className = 'cargador-on'
 	unsetModal(function(){
@@ -68,8 +74,31 @@ function empezarJuego(){
 			content:'<p><span>¡Viste a Juan para '+oficios[actual_job].name+'!</span><br />Haz clic en las puertas de los casilleros y arrastra  la prenda hacia Juan.</p>',
 			delay:4000
 		})
-		iniciarReloj()
+		
 		getE('cargador').className = 'cargador-off'
+
+		if(ismobile){
+			getE('cursor-swipe').classList.add('cursor-swipe-animation-1')
+			getE('fondo-casilleros').classList.add('cursor-swipe-animation-2')
+			getE('casilleros').classList.add('cursor-swipe-animation-2')
+			getE('personaje').classList.add('cursor-swipe-animation-3')
+			
+			animacion_swipe = setTimeout(function(){
+				getE('cursor-swipe').classList.remove('cursor-swipe-animation-1')
+				getE('fondo-casilleros').classList.remove('cursor-swipe-animation-2')
+				getE('casilleros').classList.remove('cursor-swipe-animation-2')
+				getE('personaje').classList.remove('cursor-swipe-animation-3')
+				getE('cursor-swipe').style.display = 'none'
+
+				clearTimeout(animacion_swipe)
+				animacion_swipe = null
+
+				iniciarReloj()
+			},6000)
+		}else{
+			iniciarReloj()
+		}
+		
 	})
 }
 
@@ -232,6 +261,7 @@ function clickRopa(ropa){
 			for(i = 0;i<element_data.parte.length;i++){
 				var a = getE('area'+element_data.parte[i])
 				a.setAttribute('occuped','no')
+				a.setAttribute('ropa','0')
 			}
 		}
 	}
@@ -249,8 +279,12 @@ function putElementos(){
 		div_elemento_img.style.width = elementos[indx].width+'px'
 		div_elemento_img.style.height = elementos[indx].height+'px'
 		div_elemento_img.style.backgroundImage = 'url(assets/images/elementos/'+lista_elementos[i]+'.png)'
-		div_elemento_img.setAttribute('onmousedown','downElemento(event,this,'+i+')')
-
+		if(!ismobile){
+			div_elemento_img.setAttribute('onmousedown','downElemento(event,this,'+i+')')
+		}else{
+			div_elemento_img.setAttribute('onclick','clickElemento(this,'+i+')')
+		}
+		
 		div_elemento.appendChild(div_elemento_img)
 		
 		var div_puerta = document.createElement('div')
@@ -275,6 +309,17 @@ function clickPuerta(door,idlocker){
 		//cerrar la que haya
 		actual_puerta.classList.remove('locked-door-open')
 		actual_puerta.classList.add('locked-door-close')
+
+		//si es en celular, quitar actual_img active
+		if(ismobile){
+			if(actual_img!=null){
+				actual_img.classList.remove('elemento-selected')
+				actual_img = null
+				actual_elemento_ind = -1
+				actual_elemento = null
+				hideParts()
+			}
+		}
 		
 		//mirar si es el mismo
 		if(actual_casillero.id==String('casillero'+idlocker)){
@@ -287,6 +332,8 @@ function clickPuerta(door,idlocker){
 			actual_casillero = getE('casillero'+idlocker)
 			actual_puerta.classList.remove('locked-door-close')
 			actual_puerta.classList.add('locked-door-open')
+			abrir_mp3.currentTime = 0
+			abrir_mp3.play()
 		}
 	}else{
 		//es primera vez, abramosla
@@ -294,6 +341,8 @@ function clickPuerta(door,idlocker){
 		actual_casillero = getE('casillero'+idlocker)
 		actual_puerta.classList.remove('locked-door-close')
 		actual_puerta.classList.add('locked-door-open')
+		abrir_mp3.currentTime = 0
+		abrir_mp3.play()
 	}
 }
 
@@ -326,6 +375,7 @@ function downElemento(e,img,ind){
 	document.addEventListener('mousemove',moveElemento,false)
 	document.addEventListener('mouseup',upElemento,false)
 	//console.log(actual_elemento)
+	coger_mp3.play()
 }
 
 function showParts(){
@@ -384,6 +434,7 @@ function upElemento(e){
 		for(i = 0;i<actual_elemento.parte.length;i++){
 			var a = getE('area'+actual_elemento.parte[i])
 			a.setAttribute('occuped','yes')
+			a.setAttribute('ropa',actual_elemento.id)
 		}
 
 		var ropa_seleccionada = getE('ropa'+actual_elemento.id)
@@ -452,7 +503,7 @@ function compararVestida(){
 			getE('personaje').classList.add('to-left-2')
 
 			//clonar personaje-ropas
-			var element_info_default = {name:'',description:'',id:0}
+			var element_info_default = []
 			for(i = 0;i<ropas.length;i++){
 				var prenda = ropas[i].getAttribute('prenda')
 				if(prenda!='0'){
@@ -464,36 +515,63 @@ function compararVestida(){
 
 					getE('personaje-ropas-2').appendChild(nueva_ropa)
 					var info = elementos[findElementIndex(prenda)]
-					element_info_default = info
+					element_info_default.push(info)
 				}
 				
 			}
-			animacion_personaje_final = setTimeout(function(){
-				clearTimeout(animacion_personaje_final)
-				animacion_personaje_final = null
 
-				getE('personaje-2').className = 'personaje-on'
-				getE('personaje').classList.add('personaje-off')
-			},1000)
+
+			if(!ismobile){
+				animacion_personaje_final = setTimeout(function(){
+					clearTimeout(animacion_personaje_final)
+					animacion_personaje_final = null
+
+					getE('personaje-2').className = 'personaje-on'
+					getE('personaje').classList.add('personaje-off')
+				},1000)
+				
+
+				html = ''
+				html+='<p>Has vestido a Juan correctamente y ahora está listo para trabajar</p>'
+				html+='<p>Haz clic en cada uno de los equipos de protección para ver su información</p>'
+				html+='<div class="epp-info">'
+					html+='<h2 id="epp-info-title">'+element_info_default[0].name+'</h2>'
+					html+='<img id="epp-info-image" src="assets/images/elementos/'+element_info_default[0].id+'-p.png" />'
+					html+='<p id="epp-info-description">'+element_info_default[0].description+'</p>'
+				html+='</div>'
+				setModal({
+					close:false,
+					title:'¡Muy Bien!',
+					content:html,
+					button:true,
+					value:'jugar de nuevo',
+					final:true,
+					action:'repeatGame'
+				})
+			}else{
+				//otro final, donde estén todos los epp correctos
+				html = ''
+				html+='<p>Has vestido a Juan correctamente y ahora está listo para trabajar</p>'
+				html+='<br />'
+				for(var ee = 0;ee<element_info_default.length;ee++){
+					html+='<div class="epp-info">'
+						html+='<h2 id="epp-info-title">'+element_info_default[ee].name+'</h2>'
+						html+='<img id="epp-info-image" src="assets/images/elementos/'+element_info_default[ee].id+'-p.png" />'
+						html+='<p id="epp-info-description">'+element_info_default[ee].description+'</p>'
+					html+='</div>'	
+				}
+				setModal({
+					close:false,
+					title:'¡Muy Bien!',
+					content:html,
+					button:true,
+					value:'jugar de nuevo',
+					final:true,
+					action:'repeatGame'
+				})
+			}
 			
-
-			html = ''
-			html+='<p>Has vestido a Juan correctamente y ahora está listo para trabajar</p>'
-			html+='<p>Haz clic en cada uno de los equipos de protección para ver su información</p>'
-			html+='<div class="epp-info">'
-				html+='<h2 id="epp-info-title">'+element_info_default.name+'</h2>'
-				html+='<img id="epp-info-image" src="assets/images/elementos/'+element_info_default.id+'-p.png" />'
-				html+='<p id="epp-info-description">'+element_info_default.description+'</p>'
-			html+='</div>'
-			setModal({
-				close:false,
-				title:'¡Muy Bien!',
-				content:html,
-				button:true,
-				value:'jugar de nuevo',
-				final:true,
-				action:'repeatGame'
-			})
+			ganar_mp3.play()
 		}else{
 			//hay elementos malos
 			html = ''
@@ -523,6 +601,7 @@ function compararVestida(){
 				//poner area desocupada
 				var area = getE('area'+element_data.parte[0])
 				area.setAttribute('occuped','no')
+				area.setAttribute('ropa','0')
 			}
 
 			setModal({
@@ -535,14 +614,25 @@ function compararVestida(){
 			})
 		}
 	}else{
-		setAlerta({
-			top:'50%',
-			left:[55,'%',2],
-			direction:'right',
-			content:'<p>Al personaje le hacen falta más <span>Elementos de protección personal</span>.</p>',
-			delay:3000,
-			callback:continuarJuego
-		})
+		if(ismobile){
+			setAlerta({
+				top:'50%',
+				left:[55,'%',2],
+				direction:'right',
+				content:'<p>Al personaje le hacen falta más <span>Elementos de protección personal</span>.</p>',
+				delay:3000,
+				callback:continuarJuego
+			})	
+		}else{
+			setAlerta({
+				top:'50%',
+				left:[5,'%',2],
+				direction:'right',
+				content:'<p>Al personaje le hacen falta más <span>Elementos de protección personal</span>.</p>',
+				delay:3000,
+				callback:continuarJuego
+			})	
+		}
 	}
 }
 
@@ -559,9 +649,10 @@ function endGame(){
 	document.removeEventListener('mousemove',moveElemento,false)
 	document.removeEventListener('mouseup',upElemento,false)
 
+	alarma_mp3.play()
 	setAlerta({
 		top:'92%',
-		left:[18,'%',2],
+		left:[10,'%',2],
 		direction:'left',
 		content:'<p>El tiempo se ha acabado <span>¡Vuelve a intentarlo!</span>.</p>',
 		delay:3000,
@@ -594,6 +685,7 @@ function reiniciarJuego(){//reiniciar, por acabarse el tiempo
 	var areas = getE('personaje-areas').getElementsByClassName('area')
 	for(i = 0;i<areas.length;i++){
 		areas[i].setAttribute('occuped','no')
+		areas[i].setAttribute('ropa','0')
 		areas[i].className = 'area area-off'
 	}
 

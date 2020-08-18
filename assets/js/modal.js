@@ -43,12 +43,14 @@ function setModal(data){
 	}
 
 	modal.className = 'modal-on'
+	boton_mp3.play()
 }
 
 var animacion_modal = null
 function unsetModal(callBack){
 	var modal = getE('modal')
 	modal.className = 'modal-off'
+	boton_mp3.play()
 	animacion_modal = setTimeout(function(){
 		clearTimeout(animacion_modal)
 		animacion_modal = null

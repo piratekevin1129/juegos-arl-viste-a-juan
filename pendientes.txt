@@ -1,4 +1,1 @@
-sonidos
-integrar home con game
-quitar automaticamente los epp malos
-botones auxiliares
+instrucciones gif mobile

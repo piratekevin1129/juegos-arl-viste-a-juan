@@ -301,6 +301,91 @@ header{
 .elemento-off{
     visibility: hidden !important;
 }
+.elemento-selected{
+    animation-name: elemento-selected-animated;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-name: elemento-selected-animated;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+.elemento-selected::before{
+    position: absolute;
+    content: "";
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: 50%;
+    top: calc(50% - 20px);
+    top: -moz-calc(50% - 20px);
+    left: 50%;
+    left: calc(50% - 20px);
+    left: -moz-calc(50% - 20px);
+    background-color: #51f50e;
+
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+    -o-filter: blur(0px);
+    box-shadow: 0px 0px 5px 2px #51f50e;
+
+    animation-name: elemento-selected-animation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-name: elemento-selected-animation;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+@keyframes elemento-selected-animated {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -o-transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+    }
+    75% {
+        transform: scale(0.9);
+        -webkit-transform: scale(0.9);
+        -o-transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+    }
+}
+@keyframes elemento-selected-animation {
+    0% {
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -o-transform: scale(0);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(2);
+        -webkit-transform: scale(2);
+        -o-transform: scale(2);
+        opacity: 0;
+    }
+}
 
 .elemento-label{
     position: absolute;
@@ -392,14 +477,7 @@ header{
     transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s, opacity 0.2s;
     -webkit-transition: transform 0.2s, -webkit-transform 0.2s, -o-transform 0.2s, opacity 0.2s;
 }
-#personaje-ropas .ropa:hover{
-    opacity: 0.7;
-}
-#personaje-ropas-2 .ropa:hover{
-    filter: brightness(150%);
-    -webkit-filter: brightness(150%);
-    -o-filter: brightness(150%);
-}
+
 .ropa-off{
     display: none;
 }

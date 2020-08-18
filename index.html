@@ -69,19 +69,19 @@
                         <div id="personaje-main"><div class="personaje-ojos"></div></div>
                         <div id="personaje-ropas"></div>
                         <div id="personaje-areas">
-                            <div class="area area-off" occuped="no" id="area1"></div>
-                            <div class="area area-off" occuped="no" id="area2"></div>
-                            <div class="area area-off" occuped="no" id="area3"></div>
-                            <div class="area area-off" occuped="no" id="area4"></div>
-                            <div class="area area-off" occuped="no" id="area5"></div>
-                            <div class="area area-off" occuped="no" id="area6"></div>
-                            <div class="area area-off" occuped="no" id="area7"></div>
-                            <div class="area area-off" occuped="no" id="area8"></div>
-                            <div class="area area-off" occuped="no" id="area9"></div>
-                            <div class="area area-off" occuped="no" id="area10"></div>
-                            <div class="area area-off" occuped="no" id="area11"></div>
-                            <div class="area area-off" occuped="no" id="area12"></div>
-                            <div class="area area-off" occuped="no" id="area13"></div>
+                            <div class="area area-off" occuped="no" id="area1" onclick="clickArea(1)"></div>
+                            <div class="area area-off" occuped="no" id="area2" onclick="clickArea(2)"></div>
+                            <div class="area area-off" occuped="no" id="area3" onclick="clickArea(3)"></div>
+                            <div class="area area-off" occuped="no" id="area4" onclick="clickArea(4)"></div>
+                            <div class="area area-off" occuped="no" id="area5" onclick="clickArea(5)"></div>
+                            <div class="area area-off" occuped="no" id="area6" onclick="clickArea(6)"></div>
+                            <div class="area area-off" occuped="no" id="area7" onclick="clickArea(7)"></div>
+                            <div class="area area-off" occuped="no" id="area8" onclick="clickArea(8)"></div>
+                            <div class="area area-off" occuped="no" id="area9" onclick="clickArea(9)"></div>
+                            <div class="area area-off" occuped="no" id="area10" onclick="clickArea(10)"></div>
+                            <div class="area area-off" occuped="no" id="area11" onclick="clickArea(11)"></div>
+                            <div class="area area-off" occuped="no" id="area12" onclick="clickArea(12)"></div>
+                            <div class="area area-off" occuped="no" id="area13" onclick="clickArea(13)"></div>
                         </div>
                     </div>
                 </div>
@@ -101,6 +101,7 @@
                 </div>
 
                 <div id="elemento-drag" class="elemento-drag-off"></div>
+                <div id="cursor-swipe"></div>
             </div>
             <div id="home-scene">
                 <div id="personaje-home" class="personaje-1"><div class="personaje-ojos"></div></div>
@@ -135,14 +136,43 @@
         </div>
     </div>
 <script src="assets/data.js"></script>
+<script src="assets/js/mobile.js"></script>
 <script src="assets/js/timer.js"></script>
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/game.js"></script>
 <script>
-    var animation_start = null
-    window.onload = function(){
-        setGame()    
-    }
+
+var abrir_mp3 = null
+var alarma_mp3 = null
+var boton_mp3 = null
+var coger_mp3 = null
+var cronometro_mp3 = null
+var ganar_mp3 = null
+
+var animation_start = null
+window.onload = function(){
+    loadAudio({src:'assets/media/abrir.mp3',callBack:function(data){
+    abrir_mp3 = data
+    loadAudio({src:'assets/media/alarma.mp3',callBack:function(data){
+    alarma_mp3 = data
+    loadAudio({src:'assets/media/boton.mp3',callBack:function(data){
+    boton_mp3 = data
+    loadAudio({src:'assets/media/coger.mp3',callBack:function(data){
+    coger_mp3 = data
+    loadAudio({src:'assets/media/cronometro.mp3',callBack:function(data){
+    cronometro_mp3 = data
+    loadAudio({src:'assets/media/ganar.mp3',callBack:function(data){
+    ganar_mp3 = data
+
+        prepareWindow()
+        setGame()
+    }})
+    }})
+    }})
+    }})
+    }})
+    }})
+}
     
 </script>
 </body>
