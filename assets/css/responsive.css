@@ -721,6 +721,15 @@
     #modal-close-btn{
         cursor: default;
     }
+    .modal-instrucciones-gif > div{
+        cursor: default;
+    }
+    .modal-instrucciones-gif > div video{
+        cursor: default;
+    }
+    .modal-instrucciones-gif > div button{
+        cursor: default;
+    }
 
     /********TOOLTIP*********/
     #tooltip{
