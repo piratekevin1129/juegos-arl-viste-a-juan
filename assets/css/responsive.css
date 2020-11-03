@@ -105,6 +105,13 @@
         -webkit-filter: brightness(150%);
         -o-filter: brightness(150%);
     }
+    #modal-button:hover{
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        background-color: #0097A3;
+        cursor: pointer;
+    }
 }
 
 @media (min-width: 560px) and (max-width: 767px){
@@ -309,6 +316,13 @@
     }
     .elemento-incorrecto-img{
         margin-right: 10px;
+    }
+    #modal-button:hover{
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -o-transform: scale(1.1);
+        background-color: #0097A3;
+        cursor: pointer;
     }
 }
 

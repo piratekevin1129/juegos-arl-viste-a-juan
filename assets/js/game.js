@@ -549,7 +549,7 @@ function compararVestida(){
 				html+='</div>'
 				setModal({
 					close:false,
-					title:'¡Muy Bien!',
+					title:'¡Muy bien!',
 					content:html,
 					button:true,
 					value:'jugar de nuevo',
@@ -570,7 +570,7 @@ function compararVestida(){
 				}
 				setModal({
 					close:false,
-					title:'¡Muy Bien!',
+					title:'¡Muy bien!',
 					content:html,
 					button:true,
 					value:'jugar de nuevo',
